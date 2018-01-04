@@ -6,12 +6,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.zeallat.prndtest"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary true
@@ -33,7 +33,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            def apkName = "app"
+            def apkName = "prndtest"
 
             if (!variant.getFlavorName().isEmpty())
                 apkName += "-" + variant.getFlavorName()
@@ -60,9 +60,6 @@ dependencies {
     implementation 'com.google.guava:guava:22.0-android'
     //butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
-    implementation 'com.google.firebase:firebase-database:11.0.4'
-    implementation 'com.google.firebase:firebase-auth:11.0.4'
-    implementation 'com.google.firebase:firebase-messaging:11.0.4'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //support design
     implementation "com.android.support:design:$support_version"
@@ -84,6 +81,4 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.afollestad.material-dialogs:commons:0.9.5.0'
 }
-//apply plugin: 'com.google.gms.google-services'
-
 apply plugin: 'com.google.gms.google-services'
