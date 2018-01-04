@@ -9,6 +9,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+/*
+차량 데이터 조회 서비스
+ */
 public interface CarService {
     @GET("/cars/")
     Call<List<Car>> getList(@Query("model") String modelId);

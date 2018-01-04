@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/*
+차량 데이터 클래스
+ */
 public class Car {
 
     @SerializedName("car_number")
