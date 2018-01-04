@@ -1,6 +1,5 @@
 package com.zeallat.prndtest.data.pref;
 
-import com.zeallat.prndtest.data.model.User;
 
 /**
  * PreferencesRepository.java
@@ -11,11 +10,4 @@ import com.zeallat.prndtest.data.model.User;
  */
 public interface PreferencesRepository {
 
-    void setUser(User user);
-
-    User getUser();
-
-    void setIsFirstLaunch(boolean isFirstLaunch);
-
-    boolean isFirstLaunch();
 }
