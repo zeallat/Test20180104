@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+//Realm 사용위해 추가.
+apply plugin: 'realm-android'
+//kotlin plugin
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.zeallat.baseapp"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary true
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def apkName = "app"
+
+            if (!variant.getFlavorName().isEmpty())
+                apkName += "-" + variant.getFlavorName()
+
+            if (variant.buildType.name.equals("release"))
+                apkName += "-" + variant.buildType.name
+
+            apkName += "-" + new Date().format('yyyyMMdd-HHmm')
+            apkName += ".apk"
+            output.outputFileName = apkName
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$support_version"
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    //guava
+    implementation 'com.google.guava:guava:22.0-android'
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.google.firebase:firebase-database:11.0.4'
+    implementation 'com.google.firebase:firebase-auth:11.0.4'
+    implementation 'com.google.firebase:firebase-messaging:11.0.4'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //support design
+    implementation "com.android.support:design:$support_version"
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
+    //transition
+    implementation 'com.andkulikov:transitionseverywhere:1.7.4'
+    //eventbus
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    //permission dispatcher
+    compile("com.github.hotchemi:permissionsdispatcher:2.4.0") {
+        // if you don't use android.app.Fragment you can exclude support for them
+        exclude module: "support-v13"
+    }
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:2.4.0"
+    implementation 'com.blankj:utilcode:1.9.6'
+    implementation 'com.android.support:multidex:1.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.afollestad.material-dialogs:commons:0.9.5.0'
+}
+//apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'com.google.gms.google-services'
