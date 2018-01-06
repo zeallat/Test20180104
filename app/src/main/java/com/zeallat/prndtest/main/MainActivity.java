@@ -7,10 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SizeUtils;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseActivityConfig;
 import com.zeallat.prndtest.base.BaseViewActivity;
 import com.zeallat.prndtest.data.model.Car;
+import com.zeallat.prndtest.view.decoration.GridSpacingItemDecoration;
 
 import java.util.List;
 
@@ -47,12 +49,15 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
     private void initView() {
         mCarRecyclerAdapter = new MainCarRecyclerAdapter();
         mGridLayoutManager = new GridLayoutManager(this, GRID_SPAN_COUNT);
-        mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+        GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 return MainCarRecyclerAdapter.ViewType.valueOf(position).getSpanSize();
             }
-        });
+        };
+        mGridLayoutManager.setSpanSizeLookup(spanSizeLookup);
+        mRecyclerView.addItemDecoration(
+                new GridSpacingItemDecoration(GRID_SPAN_COUNT, SizeUtils.dp2px(8), true, spanSizeLookup));
         mRecyclerView.setAdapter(mCarRecyclerAdapter);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
     }
