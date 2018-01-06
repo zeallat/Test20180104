@@ -57,7 +57,7 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
         };
         mGridLayoutManager.setSpanSizeLookup(spanSizeLookup);
         mRecyclerView.addItemDecoration(
-                new GridSpacingItemDecoration(GRID_SPAN_COUNT, SizeUtils.dp2px(8), true, spanSizeLookup));
+                new GridSpacingItemDecoration(GRID_SPAN_COUNT, SizeUtils.dp2px(8), SizeUtils.dp2px(16), true, spanSizeLookup));
         mRecyclerView.setAdapter(mCarRecyclerAdapter);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
     }

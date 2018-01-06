@@ -14,21 +14,33 @@ import android.view.View;
  */
 public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
-    private int spanCount;
-    private int spacing;
-    private boolean includeEdge;
+    private int mSpanCount;
+    private int mSpacing;
+    private int mEdgeSpacing;
+    private boolean isIncludeEdge;
     private GridLayoutManager.SpanSizeLookup mSpanSizeLookup = new GridLayoutManager.DefaultSpanSizeLookup();
 
-    public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-        this.spanCount = spanCount;
-        this.spacing = spacing;
-        this.includeEdge = includeEdge;
+    public GridSpacingItemDecoration(int spanCount, int spacing, boolean isIncludeEdge) {
+        mSpanCount = spanCount;
+        mSpacing = spacing;
+        mEdgeSpacing = spacing;
+        this.isIncludeEdge = isIncludeEdge;
     }
 
-    public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge, GridLayoutManager.SpanSizeLookup spanSizeLookup) {
-        this.spanCount = spanCount;
-        this.spacing = spacing;
-        this.includeEdge = includeEdge;
+    public GridSpacingItemDecoration(int spanCount, int spacing, boolean isIncludeEdge, GridLayoutManager.SpanSizeLookup spanSizeLookup) {
+        mSpanCount = spanCount;
+        mSpacing = spacing;
+        mEdgeSpacing = spacing;
+        this.isIncludeEdge = isIncludeEdge;
+        mSpanSizeLookup = spanSizeLookup;
+    }
+
+    public GridSpacingItemDecoration(int spanCount, int spacing, int edgeSpacing, boolean isIncludeEdge, GridLayoutManager.SpanSizeLookup
+            spanSizeLookup) {
+        mSpanCount = spanCount;
+        mSpacing = spacing;
+        mEdgeSpacing = edgeSpacing;
+        this.isIncludeEdge = isIncludeEdge;
         mSpanSizeLookup = spanSizeLookup;
     }
 
@@ -36,32 +48,32 @@ public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int position = parent.getChildAdapterPosition(view); // item position
         int spanSize = mSpanSizeLookup.getSpanSize(position);
-        int column = mSpanSizeLookup.getSpanIndex(position, spanCount);
-        int spanGroupIndex = mSpanSizeLookup.getSpanGroupIndex(position, spanCount);
+        int column = mSpanSizeLookup.getSpanIndex(position, mSpanCount);
+        int spanGroupIndex = mSpanSizeLookup.getSpanGroupIndex(position, mSpanCount);
 
         boolean isFirstColumn = column == 0;
-        boolean isLastColumn = column + spanSize == spanCount;
+        boolean isLastColumn = column + spanSize == mSpanCount;
         boolean isTopGroup = spanGroupIndex == 0;
 
         if (isFirstColumn) {
             //Item at left edge
-            if (includeEdge) outRect.left = spacing;
-            outRect.right = isLastColumn ? (includeEdge ? spacing : 0) : spacing / 2;
+            if (isIncludeEdge) outRect.left = mEdgeSpacing;
+            outRect.right = isLastColumn ? (isIncludeEdge ? mEdgeSpacing : 0) : mSpacing / 2;
         } else if (isLastColumn) {
             //Item at right edge
-            outRect.left = spacing / 2;
-            if (includeEdge) outRect.right = spacing;
+            outRect.left = mSpacing / 2;
+            if (isIncludeEdge) outRect.right = mEdgeSpacing;
         } else {
             //Item at middle
-            outRect.left = spacing / 2;
-            outRect.right = spacing / 2;
+            outRect.left = mSpacing / 2;
+            outRect.right = mSpacing / 2;
         }
 
         // Item at top edge
-        if (isTopGroup && includeEdge) outRect.top = spacing;
-        if (!isTopGroup && !includeEdge) outRect.top = spacing;
+        if (isTopGroup && isIncludeEdge) outRect.top = mEdgeSpacing;
+        if (!isTopGroup && !isIncludeEdge) outRect.top = mSpacing;
 
         // Item bottom
-        if (includeEdge) outRect.bottom = spacing;
+        if (isIncludeEdge) outRect.bottom = mSpacing;
     }
 }
