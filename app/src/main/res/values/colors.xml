@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#6392F8</color>
     <color name="colorAccent">#6392F8</color>
     <color name="background.default">#FFF</color>
+    <color name="background.disabled">#80323232</color>
     <color name="dark">#212121</color>
     <color name="text.primary">#2f3038</color>
     <color name="text.secondary">#999</color>

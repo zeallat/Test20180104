@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/shape_card_bg"
+              android:orientation="vertical"
+              android:padding="8dp">
+
+    <com.zeallat.prndtest.view.SquareRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:background="@color/background.disabled"/>
+
+        <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:includeFontPadding="false"
+            android:padding="6dp"
+            android:textColor="#FFFFFF"
+            tools:text="판매중"/>
+
+    </com.zeallat.prndtest.view.SquareRelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewModelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/Text.Large"
+        android:textStyle="bold"
+        tools:text="뉴 쏘렌토 R"/>
+
+    <TextView
+        android:id="@+id/textViewGradeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/Text.Large"
+        android:textStyle="bold"
+        tools:text="디젤 2.0 2WD 트렌디"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:flexWrap="wrap">
+
+        <TextView
+            android:id="@+id/textViewYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2012"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" · "/>
+
+        <TextView
+            android:id="@+id/textViewMileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="5.2만km"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" · "/>
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1,200만원"/>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+</LinearLayout>

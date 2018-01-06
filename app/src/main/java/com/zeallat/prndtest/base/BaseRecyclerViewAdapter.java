@@ -43,4 +43,8 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter {
         mItems.clear();
         notifyDataSetChanged();
     }
+
+    protected T getItem(int index) {
+        return mItems.get(index);
+    }
 }

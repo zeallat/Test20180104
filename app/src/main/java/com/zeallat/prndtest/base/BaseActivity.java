@@ -298,64 +298,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-//    public enum PhotoPickType {CAMERA, GALLERY}
-//
-//    /**
-//     * 사진 취득 기능
-//     */
-//    protected void takePhoto() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("사진 선택")
-//                .setItems(new String[]{"사진 촬영", "갤러리에서 선택"}, (DialogInterface dialog, int which) -> {
-//                    switch (which) {
-//                        case 0:
-//                            takePhotoFromCamera();
-//                            break;
-//                        case 1:
-//                            takePhotoFromGallery();
-//                            break;
-//                    }
-//                });
-//        builder.show();
-//    }
-//
-//    protected void takePhoto(PhotoPickType type) {
-//        switch (type) {
-//            case CAMERA:
-//                takePhotoFromCamera();
-//                break;
-//            case GALLERY:
-//                takePhotoFromGallery();
-//                break;
-//        }
-//    }
-//
-//    private void takePhotoFromCamera() {
-//        RPickMedia.instance.pickFromCamera(this, (resultCode, path) -> {
-//            onTakePhotoResult(resultCode, path, PhotoPickType.CAMERA);
-//            return Unit.INSTANCE;
-//        });
-//    }
-//
-//    private void takePhotoFromGallery() {
-//        RPickMedia.instance.pickFromGallery(this, (resultCode, path) -> {
-//            onTakePhotoResult(resultCode, path, PhotoPickType.GALLERY);
-//            return Unit.INSTANCE;
-//        });
-//    }
-//
-//    private void onTakePhotoResult(int resultCode, String path, PhotoPickType photoPickType) {
-//        if (resultCode == RPickMedia.PICK_FAILED || resultCode != RPickMedia.PICK_SUCCESS) return;
-//        String realPath = RichUtils.getRealPath(Uri.parse(path), this);
-//        realPath = FileUtil.fixPhotoDegree(this, realPath);
-//        RichUtils.requestMediaScanner(this, realPath);
-//        onTakePhotoResult(realPath, photoPickType);
-//    }
-//
-//    protected void onTakePhotoResult(String imagePath, PhotoPickType type) {
-//
-//    }
-
     /**
      * 키보드 숨김
      */

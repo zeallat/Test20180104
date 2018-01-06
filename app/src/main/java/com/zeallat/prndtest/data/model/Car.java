@@ -5,8 +5,7 @@ import android.net.Uri;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -25,13 +24,13 @@ public class Car extends RealmObject {
     @SerializedName("full_name")
     private String mFullName;
     @SerializedName("image_urls")
-    private List<String> mImageUrls;
+    private RealmList<String> mImageUrls;
     @SerializedName("initial_registration_date")
     private String mInitialRegistrationDate;
     @SerializedName("absolute_url")
     private String mAbsoluteUrl;
     @SerializedName("discounted_price")
-    private int mDiscountedPrice;
+    private Integer mDiscountedPrice;
     @SerializedName("grade_part_name")
     private String mGradePartName;
     @SerializedName("main_image_url")
@@ -85,11 +84,11 @@ public class Car extends RealmObject {
         mFullName = fullName;
     }
 
-    public List<String> getImageUrls() {
+    public RealmList<String> getImageUrls() {
         return mImageUrls;
     }
 
-    public void setImageUrls(List<String> imageUrls) {
+    public void setImageUrls(RealmList<String> imageUrls) {
         mImageUrls = imageUrls;
     }
 
@@ -109,11 +108,11 @@ public class Car extends RealmObject {
         mAbsoluteUrl = absoluteUrl;
     }
 
-    public int getDiscountedPrice() {
+    public Integer getDiscountedPrice() {
         return mDiscountedPrice;
     }
 
-    public void setDiscountedPrice(int discountedPrice) {
+    public void setDiscountedPrice(Integer discountedPrice) {
         mDiscountedPrice = discountedPrice;
     }
 

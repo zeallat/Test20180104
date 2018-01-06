@@ -48,6 +48,7 @@ public class MainPresenter implements MainContract.Presenter {
                 Log.d("MainPresenter", "onDataLoaded");
                 Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(paginationInfo));
                 Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(datas));
+                mView.addCars(datas);
             }
 
             @Override
@@ -55,5 +56,15 @@ public class MainPresenter implements MainContract.Presenter {
                 Log.d("MainPresenter", "onDataNotAvailable");
             }
         });
+    }
+
+    @Override
+    public void onRefreshCars() {
+
+    }
+
+    @Override
+    public void reachBottomOfCars() {
+
     }
 }
