@@ -18,24 +18,28 @@ public abstract class BaseRepository<T, RS extends BaseDataSource<T>> implements
 
     @Override
     public void add(@NonNull T data, @NonNull ResponseCallback callback) {
+        checkNotNull(data);
         checkNotNull(callback);
         mRemoteDataSource.add(data, callback);
     }
 
     @Override
     public void add(@NonNull Iterable<T> datas, @NonNull ResponseCallback callback) {
+        checkNotNull(datas);
         checkNotNull(callback);
         mRemoteDataSource.add(datas, callback);
     }
 
     @Override
     public void update(@NonNull T data, @NonNull ResponseCallback callback) {
+        checkNotNull(data);
         checkNotNull(callback);
         mRemoteDataSource.update(data, callback);
     }
 
     @Override
     public void remove(@NonNull T data, @NonNull ResponseCallback callback) {
+        checkNotNull(data);
         checkNotNull(callback);
         mRemoteDataSource.remove(data, callback);
     }
