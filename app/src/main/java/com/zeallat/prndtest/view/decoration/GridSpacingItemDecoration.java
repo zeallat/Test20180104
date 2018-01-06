@@ -14,34 +14,53 @@ import android.view.View;
  */
 public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
-    private int mSpanCount;
-    private int mSpacing;
-    private int mEdgeSpacing;
-    private boolean isIncludeEdge;
-    private GridLayoutManager.SpanSizeLookup mSpanSizeLookup = new GridLayoutManager.DefaultSpanSizeLookup();
+    private final int mSpanCount;
+    private final int mSpacing;
+    private final int mEdgeSpacing;
+    private final boolean isIncludeEdge;
+    private final GridLayoutManager.SpanSizeLookup mSpanSizeLookup;
 
-    public GridSpacingItemDecoration(int spanCount, int spacing, boolean isIncludeEdge) {
-        mSpanCount = spanCount;
-        mSpacing = spacing;
-        mEdgeSpacing = spacing;
-        this.isIncludeEdge = isIncludeEdge;
+    public static class Builder {
+        private int mSpanCount;
+        private int mSpacing;
+        private int mEdgeSpacing;
+        private boolean isIncludeEdge;
+        private GridLayoutManager.SpanSizeLookup mSpanSizeLookup;
+
+        public Builder(int spanCount, int spacing) {
+            mSpanCount = spanCount;
+            mSpacing = spacing;
+            mEdgeSpacing = spacing;
+            isIncludeEdge = false;
+            mSpanSizeLookup = new GridLayoutManager.DefaultSpanSizeLookup();
+        }
+
+        public Builder setEdgeSpacing(int edgeSpacing) {
+            mEdgeSpacing = edgeSpacing;
+            return this;
+        }
+
+        public Builder setIncludeEdge(boolean includeEdge) {
+            isIncludeEdge = includeEdge;
+            return this;
+        }
+
+        public Builder setSpanSizeLookup(GridLayoutManager.SpanSizeLookup spanSizeLookup) {
+            mSpanSizeLookup = spanSizeLookup;
+            return this;
+        }
+
+        public GridSpacingItemDecoration build() {
+            return new GridSpacingItemDecoration(this);
+        }
     }
 
-    public GridSpacingItemDecoration(int spanCount, int spacing, boolean isIncludeEdge, GridLayoutManager.SpanSizeLookup spanSizeLookup) {
-        mSpanCount = spanCount;
-        mSpacing = spacing;
-        mEdgeSpacing = spacing;
-        this.isIncludeEdge = isIncludeEdge;
-        mSpanSizeLookup = spanSizeLookup;
-    }
-
-    public GridSpacingItemDecoration(int spanCount, int spacing, int edgeSpacing, boolean isIncludeEdge, GridLayoutManager.SpanSizeLookup
-            spanSizeLookup) {
-        mSpanCount = spanCount;
-        mSpacing = spacing;
-        mEdgeSpacing = edgeSpacing;
-        this.isIncludeEdge = isIncludeEdge;
-        mSpanSizeLookup = spanSizeLookup;
+    private GridSpacingItemDecoration(Builder builder) {
+        mSpanCount = builder.mSpanCount;
+        mSpacing = builder.mSpacing;
+        mEdgeSpacing = builder.mEdgeSpacing;
+        isIncludeEdge = builder.isIncludeEdge;
+        mSpanSizeLookup = builder.mSpanSizeLookup;
     }
 
     @Override
