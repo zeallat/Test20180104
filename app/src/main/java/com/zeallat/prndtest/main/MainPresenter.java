@@ -8,6 +8,7 @@ import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.source.BaseDataSource;
 import com.zeallat.prndtest.data.source.CarRepository;
+import com.zeallat.prndtest.data.source.DefaultSpecification;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class MainPresenter implements MainContract.Presenter {
 
     private MainContract.View mView;
     private CarRepository mCarRepository = new CarRepository();
+    private int mCurrentPage = 1;
+
 
     public MainPresenter(MainContract.View view) {
         mView = view;
@@ -42,7 +45,9 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void getCars() {
-        mCarRepository.query(new BaseDataSource.GetDataCallback<Car>() {
+        DefaultSpecification defaultSpecification = new DefaultSpecification();
+        defaultSpecification.setPage(mCurrentPage);
+        mCarRepository.query(defaultSpecification, new BaseDataSource.GetDataCallback<Car>() {
             @Override
             public void onDataLoaded(List<Car> datas, @Nullable PaginationInfo paginationInfo) {
                 Log.d("MainPresenter", "onDataLoaded");
@@ -65,6 +70,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void reachBottomOfCars() {
-
+        mCurrentPage++;
+        getCars();
     }
 }

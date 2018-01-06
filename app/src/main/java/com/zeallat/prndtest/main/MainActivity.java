@@ -13,6 +13,7 @@ import com.zeallat.prndtest.base.BaseActivityConfig;
 import com.zeallat.prndtest.base.BaseViewActivity;
 import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.view.decoration.GridSpacingItemDecoration;
+import com.zeallat.prndtest.view.listener.EndlessScrollListener;
 
 import java.util.List;
 
@@ -65,6 +66,12 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
                 .build());
         mRecyclerView.setAdapter(mCarRecyclerAdapter);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
+        mRecyclerView.addOnScrollListener(new EndlessScrollListener(mGridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                mPresenter.reachBottomOfCars();
+            }
+        });
     }
 
     @Override
