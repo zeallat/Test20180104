@@ -14,9 +14,9 @@
 
     <!-- ToolBar -->
     <style name="ToolBarStyle" parent="Theme.AppCompat">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@color/text.primary</item>
+        <item name="android:textColorSecondary">@color/text.secondary</item>
+        <item name="actionMenuTextColor">@color/text.primary</item>
     </style>
 
 </resources>
