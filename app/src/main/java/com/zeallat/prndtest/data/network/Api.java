@@ -46,4 +46,9 @@ public class Api {
                     .build();
         }
     }
+
+    public CarService getCarService() {
+        return retrofit.create(CarService.class);
+    }
+
 }

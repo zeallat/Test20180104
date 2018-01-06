@@ -5,11 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /*
 차량 데이터 클래스
  */
-public class Car {
+public class Car extends RealmObject {
 
+    @PrimaryKey
+    @SerializedName("id")
+    private int mId;
     @SerializedName("car_number")
     private String mCarNumber;
     @SerializedName("fuel")
@@ -43,6 +49,14 @@ public class Car {
 
 
     public Car() {
+    }
+
+    public int getId() {
+        return mId;
+    }
+
+    public void setId(int id) {
+        mId = id;
     }
 
     public String getCarNumber() {
