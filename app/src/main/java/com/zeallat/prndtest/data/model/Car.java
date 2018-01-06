@@ -1,6 +1,8 @@
 
 package com.zeallat.prndtest.data.model;
 
+import android.net.Uri;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -177,5 +179,9 @@ public class Car extends RealmObject {
 
     public void setYear(int year) {
         mYear = year;
+    }
+
+    public void parseIdFromUrl() {
+        this.setId(Integer.parseInt(Uri.parse(this.getAbsoluteUrl()).getLastPathSegment()));
     }
 }

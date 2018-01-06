@@ -1,6 +1,5 @@
 package com.zeallat.prndtest.data.source.remote;
 
-import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import com.zeallat.prndtest.data.model.Car;
@@ -53,7 +52,7 @@ public class CarRemoteDataSource implements BaseDataSource<Car> {
                 @Override
                 public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
                     if (response.code() == 200) {
-                        callback.onDataLoaded(response.body());
+                        callback.onDataLoaded(createCarId(response.body()));
                     } else {
                         callback.onDataNotAvailable();
                     }
@@ -71,7 +70,7 @@ public class CarRemoteDataSource implements BaseDataSource<Car> {
                 @Override
                 public void onResponse(Call<Car> call, Response<Car> response) {
                     if (response.code() == 200) {
-                        callback.onDataLoaded(Collections.singletonList(response.body()));
+                        callback.onDataLoaded(createCarId(Collections.singletonList(response.body())));
                     } else {
                         callback.onDataNotAvailable();
                     }
@@ -85,11 +84,10 @@ public class CarRemoteDataSource implements BaseDataSource<Car> {
         }
     }
 
-    private void setCarId(Iterable<Car> cars) {
-        Car car;
+    private List<Car> createCarId(List<Car> cars) {
         for (Iterator<Car> carIterator = cars.iterator(); carIterator.hasNext(); ) {
-            car = carIterator.next();
-            car.setId(Integer.parseInt(Uri.parse(car.getAbsoluteUrl()).getLastPathSegment()));
+            carIterator.next().parseIdFromUrl();
         }
+        return cars;
     }
 }

@@ -1,5 +1,14 @@
 package com.zeallat.prndtest.main;
 
+import android.util.Log;
+
+import com.google.gson.GsonBuilder;
+import com.zeallat.prndtest.data.model.Car;
+import com.zeallat.prndtest.data.source.BaseDataSource;
+import com.zeallat.prndtest.data.source.CarRepository;
+
+import java.util.List;
+
 public class MainPresenter implements MainContract.Presenter {
 
     private MainContract.View mView;
@@ -11,7 +20,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onCreate() {
-
+        getCars();
     }
 
     @Override
@@ -27,5 +36,20 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void onDestroy() {
 
+    }
+
+    private void getCars() {
+        new CarRepository().query(null, new BaseDataSource.GetDataCallback<Car>() {
+            @Override
+            public void onDataLoaded(List<Car> datas) {
+                Log.d("MainPresenter", "onDataLoaded");
+                Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(datas));
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                Log.d("MainPresenter", "onDataNotAvailable");
+            }
+        });
     }
 }
