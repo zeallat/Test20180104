@@ -70,7 +70,7 @@ public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car> {
         Context context = viewHolder.itemView.getContext();
 
         //이미지 표시
-        Glide.with(context).load(car.getMainImageUrl()).into(viewHolder.getImageViewContent());
+        Glide.with(context).load(car.getMainImageUrl()).thumbnail(0.1f).into(viewHolder.getImageViewContent());
         //텍스트 표시
         viewHolder.getTextViewModelName().setText(car.getModelPartName());
         viewHolder.getTextViewGradeName().setText(car.getGradePartName());
