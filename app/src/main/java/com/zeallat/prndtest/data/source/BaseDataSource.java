@@ -1,6 +1,9 @@
 package com.zeallat.prndtest.data.source;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
+import com.zeallat.prndtest.data.model.PaginationInfo;
 
 import java.util.List;
 
@@ -11,7 +14,7 @@ import java.util.List;
 public interface BaseDataSource<T> {
 
     interface GetDataCallback<T> {
-        void onDataLoaded(List<T> datas);
+        void onDataLoaded(List<T> datas, @Nullable PaginationInfo paginationInfo);
 
         void onDataNotAvailable();
     }
