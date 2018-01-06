@@ -8,4 +8,9 @@
     <color name="dark">#212121</color>
     <color name="text.primary">#2f3038</color>
     <color name="text.secondary">#999</color>
+
+
+    <color name="all_status_forsale">@color/colorPrimary</color>
+    <color name="all_status_onsale">#19BB8C</color>
+    <color name="all_status_soldout">#D6D5D5</color>
 </resources>

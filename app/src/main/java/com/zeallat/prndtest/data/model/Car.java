@@ -4,15 +4,47 @@ package com.zeallat.prndtest.data.model;
 import android.net.Uri;
 
 import com.google.gson.annotations.SerializedName;
+import com.zeallat.prndtest.R;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 /*
 차량 데이터 클래스
  */
 public class Car extends RealmObject {
+
+    public enum Status {
+        FOR_SALE("for_sale", R.color.all_status_forsale),
+        ON_SALE("on_sale", R.color.all_status_onsale),
+        SOLD_OUT("sold_out", R.color.all_status_soldout);
+        private String code;
+        private int colorResId;
+
+        Status(String code, int colorResId) {
+            this.code = code;
+            this.colorResId = colorResId;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public int getColorResId() {
+            return colorResId;
+        }
+
+        public static Status findByCode(String code) {
+            for (Status status : Status.values()) {
+                if (status.getCode().equals(code)) {
+                    return status;
+                }
+            }
+            return null;
+        }
+    }
 
     @PrimaryKey
     @SerializedName("id")
@@ -47,7 +79,8 @@ public class Car extends RealmObject {
     private String mStatusDisplay;
     @SerializedName("year")
     private int mYear;
-
+    @Ignore
+    private Status mStatusEnum;
 
     public Car() {
     }
@@ -178,6 +211,15 @@ public class Car extends RealmObject {
 
     public void setYear(int year) {
         mYear = year;
+    }
+
+    public Status getStatusEnum() {
+        if (mStatusEnum == null) mStatusEnum = Status.findByCode(mStatus);
+        return mStatusEnum;
+    }
+
+    public void setStatusEnum(Status statusEnum) {
+        mStatusEnum = statusEnum;
     }
 
     public void parseIdFromUrl() {

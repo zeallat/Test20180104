@@ -35,10 +35,10 @@
         android:id="@+id/textViewModelName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="@style/Text.Large"
+        android:textSize="@dimen/all_textsize_large"
         android:textStyle="bold"
         tools:text="뉴 쏘렌토 R"/>
 
@@ -46,10 +46,10 @@
         android:id="@+id/textViewGradeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="@style/Text.Large"
+        android:textSize="@dimen/all_textsize_large"
         android:textStyle="bold"
         tools:text="디젤 2.0 2WD 트렌디"/>
 

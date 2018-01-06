@@ -49,6 +49,8 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
     private void initView() {
         mCarRecyclerAdapter = new MainCarRecyclerAdapter();
         mGridLayoutManager = new GridLayoutManager(this, GRID_SPAN_COUNT);
+
+        //Rule for calculate span size
         GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {

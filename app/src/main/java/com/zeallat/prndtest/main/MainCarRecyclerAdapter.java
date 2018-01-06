@@ -1,6 +1,7 @@
 package com.zeallat.prndtest.main;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,7 @@ public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car> {
                 layoutResId = R.layout.item_car_vertical;
                 break;
             case HORIZONTAL:
-                layoutResId = R.layout.item_car_vertical;
+                layoutResId = R.layout.item_car_horizontal;
                 break;
             default:
                 throw new IllegalArgumentException(String.format(Locale.KOREA, "not supported view type: %d", viewType));
@@ -79,6 +80,8 @@ public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car> {
         viewHolder.getTextViewPrice()
                 .setText(String.format(Locale.KOREA, "%,d만원",
                         car.getDiscountedPrice() != null ? car.getDiscountedPrice() : car.getPrice()));
+
+        viewHolder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car.getStatusEnum().getColorResId()));
 
         switch (ViewType.values()[holder.getItemViewType()]) {
             case VERTICAL:
