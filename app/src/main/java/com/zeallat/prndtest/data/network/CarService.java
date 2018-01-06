@@ -14,8 +14,11 @@ import retrofit2.http.Query;
  */
 public interface CarService {
     @GET("/cars/")
-    Call<List<Car>> getList(@Query("model") String modelId);
+    Call<List<Car>> getList(@Query("page") int page);
+
+    @GET("/cars/")
+    Call<List<Car>> getList(@Query("model") int modelId, @Query("page") int page);
 
     @GET("/cars/{carId}/")
-    Call<Car> getDetail(@Path("carId") String carId);
+    Call<Car> getDetail(@Path("carId") int carId);
 }

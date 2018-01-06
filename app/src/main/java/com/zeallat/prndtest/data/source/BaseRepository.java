@@ -41,7 +41,14 @@ public abstract class BaseRepository<T, RS extends BaseDataSource<T>> implements
     }
 
     @Override
-    public void query(Specification specification, @NonNull GetDataCallback<T> callback) {
+    public void query(@NonNull GetDataCallback<T> callback) {
+        checkNotNull(callback);
+        mRemoteDataSource.query(callback);
+    }
+
+    @Override
+    public void query(@NonNull Specification specification, @NonNull GetDataCallback<T> callback) {
+        checkNotNull(specification);
         checkNotNull(callback);
         mRemoteDataSource.query(specification, callback);
     }

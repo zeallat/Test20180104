@@ -1,19 +1,19 @@
 package com.zeallat.prndtest.data.model.specification;
 
-import com.zeallat.prndtest.data.source.Specification;
+import com.zeallat.prndtest.data.source.BaseSpecification;
 
 /**
  * Created by HoJunLee on 2018-01-05.
  */
 
-public class CarSpecificationByModelId implements Specification {
-    private String modelId;
+public class CarSpecificationByModelId extends BaseSpecification {
+    private int modelId;
 
-    public CarSpecificationByModelId(String modelId) {
+    public CarSpecificationByModelId(int modelId) {
         this.modelId = modelId;
     }
 
-    public String getModelId() {
+    public int getModelId() {
         return modelId;
     }
 }

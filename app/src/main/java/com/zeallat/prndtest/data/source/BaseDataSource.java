@@ -33,5 +33,7 @@ public interface BaseDataSource<T> {
 
     void remove(@NonNull T data, @NonNull ResponseCallback callback);
 
-    void query(Specification specification, @NonNull GetDataCallback<T> callback);
+    void query(@NonNull GetDataCallback<T> callback);
+
+    void query(@NonNull Specification specification, @NonNull GetDataCallback<T> callback);
 }

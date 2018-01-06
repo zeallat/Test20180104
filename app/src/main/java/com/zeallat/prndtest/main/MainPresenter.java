@@ -1,9 +1,11 @@
 package com.zeallat.prndtest.main;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.gson.GsonBuilder;
 import com.zeallat.prndtest.data.model.Car;
+import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.source.BaseDataSource;
 import com.zeallat.prndtest.data.source.CarRepository;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class MainPresenter implements MainContract.Presenter {
 
     private MainContract.View mView;
+    private CarRepository mCarRepository = new CarRepository();
 
     public MainPresenter(MainContract.View view) {
         mView = view;
@@ -39,10 +42,11 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void getCars() {
-        new CarRepository().query(null, new BaseDataSource.GetDataCallback<Car>() {
+        mCarRepository.query(new BaseDataSource.GetDataCallback<Car>() {
             @Override
-            public void onDataLoaded(List<Car> datas) {
+            public void onDataLoaded(List<Car> datas, @Nullable PaginationInfo paginationInfo) {
                 Log.d("MainPresenter", "onDataLoaded");
+                Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(paginationInfo));
                 Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(datas));
             }
 
