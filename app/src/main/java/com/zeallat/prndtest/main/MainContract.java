@@ -12,6 +12,8 @@ public interface MainContract {
         void addCars(List<Car> cars);
 
         void setCars(List<Car> cars);
+
+        void finishRefresh();
     }
 
     interface Presenter extends BasePresenter {

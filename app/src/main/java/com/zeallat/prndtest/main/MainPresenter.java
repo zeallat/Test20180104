@@ -26,7 +26,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onCreate() {
-        getCars();
+        getCars(true);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     }
 
-    private void getCars() {
+    private void getCars(boolean isResetRequired) {
         DefaultSpecification defaultSpecification = new DefaultSpecification();
         defaultSpecification.setPage(mCurrentPage);
         mCarRepository.query(defaultSpecification, new BaseDataSource.GetDataCallback<Car>() {
@@ -53,7 +53,12 @@ public class MainPresenter implements MainContract.Presenter {
                 Log.d("MainPresenter", "onDataLoaded");
                 Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(paginationInfo));
                 Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(datas));
-                mView.addCars(datas);
+                if (isResetRequired) {
+                    mView.setCars(datas);
+                    mView.finishRefresh();
+                } else {
+                    mView.addCars(datas);
+                }
             }
 
             @Override
@@ -65,12 +70,13 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onRefreshCars() {
-
+        mCurrentPage = 1;
+        getCars(true);
     }
 
     @Override
     public void reachBottomOfCars() {
         mCurrentPage++;
-        getCars();
+        getCars(false);
     }
 }

@@ -2,6 +2,7 @@ package com.zeallat.prndtest.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
     @BindView(R.id.textViewSearch) TextView mTextViewSearch;
     @BindView(R.id.containerSearch) LinearLayout mContainerSearch;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout mSwipeRefreshLayout;
 
     private MainCarRecyclerAdapter mCarRecyclerAdapter;
     private GridLayoutManager mGridLayoutManager;
@@ -72,6 +74,12 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
                 mPresenter.reachBottomOfCars();
             }
         });
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefreshCars());
+    }
+
+    @Override
+    public void finishRefresh() {
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
