@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseRecyclerViewAdapter;
 import com.zeallat.prndtest.base.BaseRecyclerViewHolder;
@@ -71,7 +72,13 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
         Context context = holder.itemView.getContext();
 
         //이미지 표시
-        Glide.with(context).load(car.getMainImageUrl()).into(holder.getImageViewContent());
+        Glide.with(context)
+                .load(car.getMainImageUrl())
+                .thumbnail(0.1f)
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.layer_image_default_placeholder)
+                        .error(R.drawable.layer_image_error_placeholder))
+                .into(holder.getImageViewContent());
         //텍스트 표시
         holder.getTextViewModelName().setText(car.getModelPartName());
         holder.getTextViewGradeName().setText(car.getGradePartName());
