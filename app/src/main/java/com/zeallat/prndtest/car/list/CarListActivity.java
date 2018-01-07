@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SizeUtils;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseActivityConfig;
-import com.zeallat.prndtest.base.BaseRecyclerViewAdapter;
 import com.zeallat.prndtest.base.BaseViewActivity;
+import com.zeallat.prndtest.car.detail.CarDetailActivity;
 import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.model.Searchable;
 import com.zeallat.prndtest.search.SearchActivity;
@@ -49,7 +49,7 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
             mSearchModelName = extras.getString(EXTRA_MODEL_NAME, "");
         }
         new CarPresenter(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_car_list);
         initView();
         super.onCreate(savedInstanceState);
     }
@@ -90,12 +90,7 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
             }
         });
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefreshCars());
-        mCarRecyclerAdapter.setOnClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<Car>() {
-            @Override
-            public void onClick(int position, Car item) {
-
-            }
-        });
+        mCarRecyclerAdapter.setOnClickListener((position, item) -> mPresenter.onClickCar(item));
     }
 
     @Override
@@ -133,6 +128,13 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
     @Override
     public void setSearchKeyword(String searchKeyword) {
         mTextViewSearch.setText(searchKeyword);
+    }
+
+    @Override
+    public void showCarDetailPage(int carId) {
+        Bundle extras = new Bundle();
+        extras.putInt(CarDetailActivity.EXTRA_CAR_ID, carId);
+        startActivity(CarDetailActivity.class, extras);
     }
 }
 

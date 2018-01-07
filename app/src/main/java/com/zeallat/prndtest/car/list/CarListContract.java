@@ -22,6 +22,8 @@ public interface CarListContract {
         String getSearchModelName();
 
         void setSearchKeyword(String searchKeyword);
+
+        void showCarDetailPage(int carId);
     }
 
     interface Presenter extends BasePresenter {
@@ -30,6 +32,8 @@ public interface CarListContract {
         void reachBottomOfCars();
 
         void onClickSearchBox();
+
+        void onClickCar(Car car);
     }
 }
 

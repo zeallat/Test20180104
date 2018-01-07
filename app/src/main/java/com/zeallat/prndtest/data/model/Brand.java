@@ -50,9 +50,4 @@ public class Brand extends RealmObject implements Searchable {
     public void setModelGroups(RealmList<ModelGroup> modelGroups) {
         mModelGroups = modelGroups;
     }
-
-    @Override
-    public String getDisplayName() {
-        return mName;
-    }
 }

@@ -50,9 +50,4 @@ public class ModelGroup extends RealmObject implements Searchable {
     public void setModels(RealmList<Model> models) {
         mModels = models;
     }
-
-    @Override
-    public String getDisplayName() {
-        return mName;
-    }
 }

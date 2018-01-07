@@ -18,9 +18,6 @@ import butterknife.BindView;
 
 public class SearchRecyclerAdapter extends BaseRecyclerViewAdapter<Searchable, SearchRecyclerAdapter.ItemViewHolder> {
 
-    public SearchRecyclerAdapter() {
-    }
-
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search, parent, false);
@@ -31,16 +28,7 @@ public class SearchRecyclerAdapter extends BaseRecyclerViewAdapter<Searchable, S
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         Searchable searchable = getItem(position);
-        holder.getTextViewName().setText(searchable.getDisplayName());
-
-//        switch (mType) {
-//            case BRAND:
-//                break;
-//            case MODEL_GROUP:
-//                break;
-//            case MODEL:
-//                break;
-//        }
+        holder.getTextViewName().setText(searchable.getName());
     }
 
     class ItemViewHolder extends BaseRecyclerViewHolder {

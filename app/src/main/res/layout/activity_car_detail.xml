@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/imageViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.zeallat.prndtest.view.HTMLTextView
+                android:id="@+id/htmlTextViewOriginalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/text.secondary"
+                android:textSize="@dimen/all_textsize_large"
+                android:visibility="gone"
+                tools:text="1,750만원"/>
+
+            <TextView
+                android:id="@+id/textViewPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/all_textsize_extralarge"
+                tools:text="1,750만원"/>
+
+            <TextView
+                android:id="@+id/textViewStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/all_textsize_large"
+                tools:text="판매중"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/CarDetailDescriptionContainer"
+            android:layout_marginTop="32dp">
+
+            <TextView
+                style="@style/CarDetailDescriptionTitleTextView"
+                android:text="차량번호"/>
+
+            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/CarDetailDescriptionContainer">
+
+            <TextView
+                style="@style/CarDetailDescriptionTitleTextView"
+                android:text="주행거리"/>
+
+            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/CarDetailDescriptionContainer">
+
+            <TextView
+                style="@style/CarDetailDescriptionTitleTextView"
+                android:text="최초등록일"/>
+
+            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/CarDetailDescriptionContainer">
+
+            <TextView
+                style="@style/CarDetailDescriptionTitleTextView"
+                android:text="형식년도"/>
+
+            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/CarDetailDescriptionContainer">
+
+            <TextView
+                style="@style/CarDetailDescriptionTitleTextView"
+                android:text="연료"/>
+
+            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

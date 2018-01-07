@@ -39,9 +39,4 @@ public class Model extends RealmObject implements Searchable {
     public void setName(String name) {
         mName = name;
     }
-
-    @Override
-    public String getDisplayName() {
-        return mName;
-    }
 }

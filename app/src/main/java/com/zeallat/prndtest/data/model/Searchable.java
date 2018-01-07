@@ -7,5 +7,7 @@ public interface Searchable {
 
     public enum Type {BRAND, MODEL_GROUP, MODEL}
 
-    String getDisplayName();
+    String getName();
+
+    int getId();
 }

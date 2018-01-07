@@ -6,15 +6,19 @@ import android.net.Uri;
 import com.google.gson.annotations.SerializedName;
 import com.zeallat.prndtest.R;
 
+import java.io.Serializable;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
+import static android.text.TextUtils.isEmpty;
+
 /*
 차량 데이터 클래스
  */
-public class Car extends RealmObject {
+public class Car extends RealmObject implements Serializable {
 
     public enum Status {
         FOR_SALE("for_sale", R.color.all_status_forsale),
@@ -223,6 +227,8 @@ public class Car extends RealmObject {
     }
 
     public void parseIdFromUrl() {
-        this.setId(Integer.parseInt(Uri.parse(this.getAbsoluteUrl()).getLastPathSegment()));
+        if (!isEmpty(this.getAbsoluteUrl())) {
+            this.setId(Integer.parseInt(Uri.parse(this.getAbsoluteUrl()).getLastPathSegment()));
+        }
     }
 }

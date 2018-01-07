@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="animation.duration">250</integer>
+    <dimen name="all_textsize_extralarge">28sp</dimen>
     <dimen name="all_textsize_large">18sp</dimen>
     <dimen name="all_textsize_medium">13sp</dimen>
     <dimen name="all_textsize_small">11sp</dimen>

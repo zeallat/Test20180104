@@ -88,4 +88,8 @@ public class CarPresenter implements CarListContract.Presenter {
         mView.showSearchPage();
     }
 
+    @Override
+    public void onClickCar(Car car) {
+        mView.showCarDetailPage(car.getId());
+    }
 }

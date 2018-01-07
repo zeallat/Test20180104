@@ -3,7 +3,6 @@ package com.zeallat.prndtest.search;
 import android.support.annotation.Nullable;
 
 import com.zeallat.prndtest.data.model.Brand;
-import com.zeallat.prndtest.data.model.Model;
 import com.zeallat.prndtest.data.model.ModelGroup;
 import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.model.Searchable;
@@ -63,14 +62,13 @@ public class SearchPresenter implements SearchContract.Presenter {
     public void onClickSearchItem(Searchable item) {
         switch (mType) {
             case BRAND:
-                mView.showModelGroupSearchPage(((Brand) item).getId());
+                mView.showModelGroupSearchPage(item.getId());
                 break;
             case MODEL_GROUP:
-                mView.showModelSearchPage(((ModelGroup) item).getId());
+                mView.showModelSearchPage(item.getId());
                 break;
             case MODEL:
-                Model model = (Model) item;
-                mView.showModelSearchResultPage(model.getId(), model.getName());
+                mView.showModelSearchResultPage(item.getId(), item.getName());
                 break;
         }
     }

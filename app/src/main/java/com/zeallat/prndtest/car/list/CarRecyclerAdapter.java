@@ -64,6 +64,7 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
         Car car = getItem(position);
         Context context = holder.itemView.getContext();
 
