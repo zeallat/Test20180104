@@ -5,7 +5,9 @@ import android.util.Log;
 
 import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.model.PaginationInfo;
+import com.zeallat.prndtest.data.model.specification.CarSpecificationByModelId;
 import com.zeallat.prndtest.data.source.BaseDataSource;
+import com.zeallat.prndtest.data.source.BaseSpecification;
 import com.zeallat.prndtest.data.source.CarRepository;
 import com.zeallat.prndtest.data.source.DefaultSpecification;
 
@@ -25,6 +27,8 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void onCreate() {
         getCars(true);
+        String searchName = mView.getSearchModelName();
+        mView.setSearchKeyword(searchName);
     }
 
     @Override
@@ -43,9 +47,13 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void getCars(boolean isResetRequired) {
-        DefaultSpecification defaultSpecification = new DefaultSpecification();
-        defaultSpecification.setPage(mCurrentPage);
-        mCarRepository.query(defaultSpecification, new BaseDataSource.GetDataCallback<Car>() {
+        BaseSpecification specification;
+        int searchModelId = mView.getSearhModelId();
+        specification =
+                (searchModelId < 0) ? new DefaultSpecification() : new CarSpecificationByModelId(searchModelId);
+        specification.setPage(mCurrentPage);
+
+        mCarRepository.query(specification, new BaseDataSource.GetDataCallback<Car>() {
             @Override
             public void onDataLoaded(List<Car> datas, @Nullable PaginationInfo paginationInfo) {
                 if (isResetRequired) {
@@ -79,4 +87,5 @@ public class MainPresenter implements MainContract.Presenter {
     public void onClickSearchBox() {
         mView.showSearchPage();
     }
+
 }

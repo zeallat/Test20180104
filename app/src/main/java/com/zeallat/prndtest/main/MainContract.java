@@ -16,6 +16,12 @@ public interface MainContract {
         void finishRefresh();
 
         void showSearchPage();
+
+        int getSearhModelId();
+
+        String getSearchModelName();
+
+        void setSearchKeyword(String searchKeyword);
     }
 
     interface Presenter extends BasePresenter {

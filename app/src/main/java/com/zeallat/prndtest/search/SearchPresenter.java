@@ -3,6 +3,7 @@ package com.zeallat.prndtest.search;
 import android.support.annotation.Nullable;
 
 import com.zeallat.prndtest.data.model.Brand;
+import com.zeallat.prndtest.data.model.Model;
 import com.zeallat.prndtest.data.model.ModelGroup;
 import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.model.Searchable;
@@ -68,6 +69,8 @@ public class SearchPresenter implements SearchContract.Presenter {
                 mView.showModelSearchPage(((ModelGroup) item).getId());
                 break;
             case MODEL:
+                Model model = (Model) item;
+                mView.showModelSearchResultPage(model.getId(), model.getName());
                 break;
         }
     }
@@ -90,6 +93,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     private void getModelGroups() {
         int brandId = mView.getSearchId();
+        if (brandId < 0) return;
         mBrandRepository.query(new BrandSpecificationById(brandId), new BaseDataSource.GetDataCallback<Brand>() {
             @Override
             public void onDataLoaded(List<Brand> datas, @Nullable PaginationInfo paginationInfo) {
@@ -109,6 +113,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     private void getModels() {
         int modelGroupId = mView.getSearchId();
+        if (modelGroupId < 0) return;
         mModelGroupRepository.query(new ModelGroupSpecificationById(modelGroupId), new BaseDataSource.GetDataCallback<ModelGroup>() {
             @Override
             public void onDataLoaded(List<ModelGroup> datas, @Nullable PaginationInfo paginationInfo) {

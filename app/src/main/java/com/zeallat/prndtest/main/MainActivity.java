@@ -26,6 +26,9 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseViewActivity<MainContract.Presenter> implements MainContract.View {
 
+    public static final String EXTRA_MODEL_ID = "ebf579a7-11af-452b-b1d5-32045c0fe3d1";
+    public static final String EXTRA_MODEL_NAME = "acd00022-b4f1-44d5-9046-feb173e795e6";
+
     @BindView(R.id.textViewSearch) TextView mTextViewSearch;
     @BindView(R.id.containerSearch) LinearLayout mContainerSearch;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -35,8 +38,16 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
     private GridLayoutManager mGridLayoutManager;
     private static final int GRID_SPAN_COUNT = 2;
 
+    private int mSearchModelId = -1;
+    private String mSearchModelName = "";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mSearchModelId = extras.getInt(EXTRA_MODEL_ID, -1);
+            mSearchModelName = extras.getString(EXTRA_MODEL_NAME, "");
+        }
         new MainPresenter(this);
         setContentView(R.layout.activity_main);
         initView();
@@ -107,6 +118,21 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
         Bundle extras = new Bundle();
         extras.putSerializable(SearchActivity.EXTRA_TYPE, Searchable.Type.BRAND);
         startActivity(SearchActivity.class, extras);
+    }
+
+    @Override
+    public int getSearhModelId() {
+        return mSearchModelId;
+    }
+
+    @Override
+    public String getSearchModelName() {
+        return mSearchModelName;
+    }
+
+    @Override
+    public void setSearchKeyword(String searchKeyword) {
+        mTextViewSearch.setText(searchKeyword);
     }
 }
 

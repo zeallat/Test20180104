@@ -15,6 +15,8 @@ public interface SearchContract {
 
         void showModelSearchPage(int modelGroupId);
 
+        void showModelSearchResultPage(int modelId, String modelName);
+
         int getSearchId();
     }
 
