@@ -117,7 +117,7 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
             super(itemView);
         }
 
-        public ImageView getImageViewContent() {
+        public ImageView  getImageViewContent() {
             return mImageViewContent;
         }
 

@@ -9,7 +9,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.zeallat.prndtest"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -65,8 +65,6 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.1.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
-    //transition
-    implementation 'com.andkulikov:transitionseverywhere:1.7.4'
     //eventbus
     implementation 'org.greenrobot:eventbus:3.0.0'
     //permission dispatcher
