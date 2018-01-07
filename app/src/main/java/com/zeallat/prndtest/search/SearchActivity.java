@@ -18,18 +18,22 @@ import butterknife.BindView;
 public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> implements SearchContract.View {
 
     public static final String EXTRA_TYPE = "1cbec92e-8fad-4cbf-9320-ec965c5327a9";
+    public static final String EXTRA_SEARCH_ID = "5de0e860-1537-479d-86c4-c52c82451932";
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     private Searchable.Type mType = Searchable.Type.BRAND;
+    private int mSearchId;
 
     private SearchRecyclerAdapter mRecyclerAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        if (getIntent().getExtras() != null) {
-            mType = (Searchable.Type) getIntent().getExtras().getSerializable(EXTRA_TYPE);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            mType = (Searchable.Type) extras.getSerializable(EXTRA_TYPE);
+            mSearchId = extras.getInt(EXTRA_SEARCH_ID, -1);
         }
         new SearchPresenter(this, mType);
         setContentView(R.layout.activity_search);
@@ -65,6 +69,28 @@ public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> i
     @Override
     public void setSearchResult(List<Searchable> searchables) {
         mRecyclerAdapter.setItems(searchables);
+    }
+
+    @Override
+    public void showModelGroupSearchPage(int brandId) {
+        startSearchPage(Searchable.Type.MODEL_GROUP, brandId);
+    }
+
+    @Override
+    public void showModelSearchPage(int modelGroupId) {
+        startSearchPage(Searchable.Type.MODEL, modelGroupId);
+    }
+
+    private void startSearchPage(Searchable.Type type, int searchId) {
+        Bundle extras = new Bundle();
+        extras.putSerializable(SearchActivity.EXTRA_TYPE, type);
+        extras.putInt(EXTRA_SEARCH_ID, searchId);
+        startActivity(SearchActivity.class, extras);
+    }
+
+    @Override
+    public int getSearchId() {
+        return mSearchId;
     }
 }
 

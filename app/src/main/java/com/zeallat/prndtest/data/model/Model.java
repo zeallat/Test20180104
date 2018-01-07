@@ -12,7 +12,7 @@ public class Model extends RealmObject implements Searchable {
     private String mAbsoluteUrl;
     @PrimaryKey
     @SerializedName("id")
-    private Long mId;
+    private int mId;
     @SerializedName("name")
     private String mName;
 
@@ -24,11 +24,11 @@ public class Model extends RealmObject implements Searchable {
         mAbsoluteUrl = absoluteUrl;
     }
 
-    public Long getId() {
+    public int getId() {
         return mId;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         mId = id;
     }
 

@@ -10,6 +10,12 @@ import java.util.List;
 public interface SearchContract {
     interface View extends BaseView<Presenter> {
         void setSearchResult(List<Searchable> searchables);
+
+        void showModelGroupSearchPage(int brandId);
+
+        void showModelSearchPage(int modelGroupId);
+
+        int getSearchId();
     }
 
     interface Presenter extends BasePresenter {
