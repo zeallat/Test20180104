@@ -18,24 +18,25 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.relex.circleindicator.CircleIndicator;
 
 public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presenter> implements CarDetailContract.View {
+
+    public static final String EXTRA_CAR_ID = "556b8b3f-eb7d-420b-8364-fa7000f48437";
 
     @BindView(R.id.imageViewPager) ViewPager mImageViewPager;
     @BindView(R.id.htmlTextViewOriginalPrice) HTMLTextView mHtmlTextViewOriginalPrice;
     @BindView(R.id.textViewPrice) TextView mTextViewPrice;
     @BindView(R.id.textViewStatus) TextView mTextViewStatus;
-
-    public static final String EXTRA_CAR_ID = "556b8b3f-eb7d-420b-8364-fa7000f48437";
     @BindView(R.id.textViewNumber) TextView mTextViewNumber;
     @BindView(R.id.textViewMileage) TextView mTextViewMileage;
     @BindView(R.id.textViewRegistrationDate) TextView mTextViewRegistrationDate;
     @BindView(R.id.textViewYear) TextView mTextViewYear;
     @BindView(R.id.textViewFuel) TextView mTextViewFuel;
     @BindView(R.id.textViewCall) TextView mTextViewCall;
+    @BindView(R.id.viewPagerIndicatoer) CircleIndicator mViewPagerIndicatoer;
 
     private int mCarId;
-
     private CarImagePagerAdapter mCarImagePagerAdapter;
 
     @Override
@@ -61,6 +62,8 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
     private void initView() {
         mCarImagePagerAdapter = new CarImagePagerAdapter();
         mImageViewPager.setAdapter(mCarImagePagerAdapter);
+        mViewPagerIndicatoer.setViewPager(mImageViewPager);
+        mCarImagePagerAdapter.registerDataSetObserver(mViewPagerIndicatoer.getDataSetObserver());
     }
 
     @Override
