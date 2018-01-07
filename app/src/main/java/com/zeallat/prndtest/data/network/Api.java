@@ -3,6 +3,7 @@ package com.zeallat.prndtest.data.network;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zeallat.prndtest.BuildConfig;
+import com.zeallat.prndtest.Config;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +26,9 @@ public class Api {
 
     private Api() {
         if (retrofit == null) {
-            Gson gson = new GsonBuilder().create();
+            Gson gson = new GsonBuilder()
+                    .setDateFormat(Config.API_DATE_FORMAT)
+                    .create();
 
             OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
             builder.readTimeout(20, TimeUnit.SECONDS);

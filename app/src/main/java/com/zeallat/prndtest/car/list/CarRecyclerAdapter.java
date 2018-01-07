@@ -18,6 +18,8 @@ import java.util.Locale;
 
 import butterknife.BindView;
 
+import static com.zeallat.prndtest.util.StringUtil.formatPrice;
+
 /**
  * Created by HoJunLee on 2018-01-06.
  */
@@ -76,9 +78,7 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
         holder.getTextViewStatus().setText(car.getStatusDisplay());
         holder.getTextViewYear().setText(String.valueOf(car.getYear()));
         holder.getTextViewMileage().setText(String.format(Locale.KOREA, "%.1f만km", ((float) car.getMileage() / 10000.f)));
-        holder.getTextViewPrice()
-                .setText(String.format(Locale.KOREA, "%,d만원",
-                        car.getDiscountedPrice() != null ? car.getDiscountedPrice() : car.getPrice()));
+        holder.getTextViewPrice().setText(formatPrice(car.getRealPrice()));
         holder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car.getStatusEnum().getColorResId()));
     }
 

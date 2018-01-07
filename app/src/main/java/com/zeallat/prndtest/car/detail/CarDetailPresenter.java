@@ -8,8 +8,13 @@ import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.model.specification.CarSpecificationById;
 import com.zeallat.prndtest.data.source.BaseDataSource;
 import com.zeallat.prndtest.data.source.CarRepository;
+import com.zeallat.prndtest.util.DateUtil;
 
 import java.util.List;
+import java.util.Locale;
+
+import static com.zeallat.prndtest.util.DateUtil.formatDate;
+import static com.zeallat.prndtest.util.StringUtil.formatPrice;
 
 public class CarDetailPresenter implements CarDetailContract.Presenter {
 
@@ -52,6 +57,14 @@ public class CarDetailPresenter implements CarDetailContract.Presenter {
                     mCar = datas.get(0);
                     mView.setCarImages(mCar.getImageUrls());
                     mView.setTitle(mCar.getFullName());
+                    mView.setPrice(formatPrice(mCar.getRealPrice()));
+                    mView.setOriginalPrice(formatPrice(mCar.getPrice()));
+                    mView.setStatus(mCar.getStatusEnum(), mCar.getStatusDisplay());
+                    mView.setNumber(mCar.getCarNumber());
+                    mView.setMileage(String.format(Locale.KOREA, "%,dkm", mCar.getMileage()));
+                    mView.setRegistrationDate(formatDate(mCar.getInitialRegistrationDate().getTime(), DateUtil.Format.MONTH));
+                    mView.setYear(String.format(Locale.KOREA, "%d년", mCar.getYear()));
+                    mView.setFuel(mCar.getFuel());
                 }
             }
 
@@ -60,5 +73,10 @@ public class CarDetailPresenter implements CarDetailContract.Presenter {
 
             }
         });
+    }
+
+    @Override
+    public void onClickButtonCall() {
+        //TODO: call
     }
 }

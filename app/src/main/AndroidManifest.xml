@@ -21,7 +21,9 @@
         <activity
             android:name=".search.SearchActivity"
             android:theme="@style/AppTheme.Light"/>
-        <activity android:name=".car.detail.CarDetailActivity"/>
+        <activity
+            android:name=".car.detail.CarDetailActivity"
+            android:theme="@style/AppTheme.Light"/>
     </application>
 
 </manifest>

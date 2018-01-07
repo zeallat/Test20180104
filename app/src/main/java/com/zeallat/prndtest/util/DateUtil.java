@@ -15,7 +15,7 @@ import java.util.Date;
 public class DateUtil {
 
     public enum Format {
-        DAY_HOUR("yyyy년 MM월 dd일 HH:mm"), DAY("yyyy년 MM월 dd일"), HOUR("MM월 dd일 HH:mm"),
+        DAY_HOUR("yyyy년 MM월 dd일 HH:mm"), MONTH("yyyy년 MM월"), DAY("yyyy년 MM월 dd일"), HOUR("MM월 dd일 HH:mm"),
         DAY_DOT("yyyy.MM.dd"), DAY_DASH("yyyy-MM-dd");
         private String format;
 
@@ -52,29 +52,29 @@ public class DateUtil {
         }
     }
 
-    public static String format(long timeInMillis, Format format) {
+    public static String formatDate(long timeInMillis, Format format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format.getFormat());
         Date date = new Date(timeInMillis);
         return sdf.format(date);
     }
 
-    public static String format(long timeInMillis) {
-        return format(timeInMillis, Format.DAY_HOUR);
+    public static String formatDate(long timeInMillis) {
+        return formatDate(timeInMillis, Format.DAY_HOUR);
     }
 
-    public static String format(Calendar calendar, Format format) {
-        return format(calendar.getTimeInMillis(), format);
+    public static String formatDate(Calendar calendar, Format format) {
+        return formatDate(calendar.getTimeInMillis(), format);
     }
 
-    public static String format(Calendar calendar) {
-        return format(calendar.getTimeInMillis(), Format.DAY_HOUR);
+    public static String formatDate(Calendar calendar) {
+        return formatDate(calendar.getTimeInMillis(), Format.DAY_HOUR);
     }
 
-    public static String format(Date date, Format format) {
-        return format(date.getTime(), format);
+    public static String formatDate(Date date, Format format) {
+        return formatDate(date.getTime(), format);
     }
 
-    public static String format(Date date) {
-        return format(date.getTime(), Format.DAY_HOUR);
+    public static String formatDate(Date date) {
+        return formatDate(date.getTime(), Format.DAY_HOUR);
     }
 }

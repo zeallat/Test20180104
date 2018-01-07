@@ -1,5 +1,7 @@
 package com.zeallat.prndtest.util;
 
+import java.util.Locale;
+
 /**
  * StringUtil.java
  *
@@ -14,6 +16,10 @@ public class StringUtil {
 
     public static String formatCurrency(int input) {
         return String.format("%,d", input);
+    }
+
+    public static String formatPrice(int price) {
+        return String.format(Locale.KOREA, "%,d만원", price);
     }
 
 }

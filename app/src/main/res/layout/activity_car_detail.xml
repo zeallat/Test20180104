@@ -19,10 +19,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp">
-
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,6 +39,7 @@
                 android:layout_marginRight="8dp"
                 android:textColor="@color/text.secondary"
                 android:textSize="@dimen/all_textsize_large"
+                android:textStyle="bold"
                 android:visibility="gone"
                 tools:text="1,750만원"/>
 
@@ -46,13 +49,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="@dimen/all_textsize_extralarge"
+                android:textStyle="bold"
                 tools:text="1,750만원"/>
 
             <TextView
                 android:id="@+id/textViewStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="4dp"
                 android:textSize="@dimen/all_textsize_large"
+                android:textStyle="bold"
                 tools:text="판매중"/>
 
         </LinearLayout>
@@ -65,7 +71,9 @@
                 style="@style/CarDetailDescriptionTitleTextView"
                 android:text="차량번호"/>
 
-            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+            <TextView
+                android:id="@+id/textViewNumber"
+                style="@style/CarDetailDescriptionContentTextView"/>
 
         </LinearLayout>
 
@@ -75,7 +83,9 @@
                 style="@style/CarDetailDescriptionTitleTextView"
                 android:text="주행거리"/>
 
-            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+            <TextView
+                android:id="@+id/textViewMileage"
+                style="@style/CarDetailDescriptionContentTextView"/>
 
         </LinearLayout>
 
@@ -85,7 +95,9 @@
                 style="@style/CarDetailDescriptionTitleTextView"
                 android:text="최초등록일"/>
 
-            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+            <TextView
+                android:id="@+id/textViewRegistrationDate"
+                style="@style/CarDetailDescriptionContentTextView"/>
 
         </LinearLayout>
 
@@ -95,7 +107,9 @@
                 style="@style/CarDetailDescriptionTitleTextView"
                 android:text="형식년도"/>
 
-            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+            <TextView
+                android:id="@+id/textViewYear"
+                style="@style/CarDetailDescriptionContentTextView"/>
 
         </LinearLayout>
 
@@ -105,9 +119,23 @@
                 style="@style/CarDetailDescriptionTitleTextView"
                 android:text="연료"/>
 
-            <TextView style="@style/CarDetailDescriptionContentTextView"/>
+            <TextView
+                android:id="@+id/textViewFuel"
+                style="@style/CarDetailDescriptionContentTextView"/>
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="연락하기"
+        android:textColor="@color/text.white"
+        android:textSize="@dimen/all_textsize_large"
+        android:textStyle="bold"/>
 </LinearLayout>

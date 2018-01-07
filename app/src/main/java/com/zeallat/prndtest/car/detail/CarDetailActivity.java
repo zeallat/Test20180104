@@ -2,17 +2,22 @@ package com.zeallat.prndtest.car.detail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseActivityConfig;
 import com.zeallat.prndtest.base.BaseViewActivity;
+import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.view.HTMLTextView;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presenter> implements CarDetailContract.View {
 
@@ -22,6 +27,12 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
     @BindView(R.id.textViewStatus) TextView mTextViewStatus;
 
     public static final String EXTRA_CAR_ID = "556b8b3f-eb7d-420b-8364-fa7000f48437";
+    @BindView(R.id.textViewNumber) TextView mTextViewNumber;
+    @BindView(R.id.textViewMileage) TextView mTextViewMileage;
+    @BindView(R.id.textViewRegistrationDate) TextView mTextViewRegistrationDate;
+    @BindView(R.id.textViewYear) TextView mTextViewYear;
+    @BindView(R.id.textViewFuel) TextView mTextViewFuel;
+    @BindView(R.id.textViewCall) TextView mTextViewCall;
 
     private int mCarId;
 
@@ -35,6 +46,7 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
         }
         new CarDetailPresenter(this, mCarId);
         setContentView(R.layout.activity_car_detail);
+        ButterKnife.bind(this);
         initView();
         super.onCreate(savedInstanceState);
     }
@@ -59,6 +71,58 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
     @Override
     public void setTitle(String title) {
         getSupportActionBar().setTitle(title);
+    }
+
+    @OnClick(R.id.textViewCall)
+    public void onViewClicked() {
+        mPresenter.onClickButtonCall();
+    }
+
+    @Override
+    public void setPrice(String text) {
+        mTextViewPrice.setText(text);
+    }
+
+    @Override
+    public void setOriginalPrice(String text) {
+        mHtmlTextViewOriginalPrice.setHtmlText(String.format("<del>%s</del>", text));
+    }
+
+    @Override
+    public void setStatus(Car.Status status, String statusText) {
+        int statusColor = ContextCompat.getColor(this, status.getColorResId());
+        mHtmlTextViewOriginalPrice.setVisibility(status == Car.Status.ON_SALE ? View.VISIBLE : View.GONE);
+        mTextViewPrice.setTextColor(
+                ContextCompat.getColor(this,
+                        status == Car.Status.SOLD_OUT ? R.color.text_secondary : R.color.text_primary));
+        mTextViewStatus.setText(statusText);
+        mTextViewStatus.setTextColor(statusColor);
+        mTextViewCall.setBackgroundColor(statusColor);
+    }
+
+    @Override
+    public void setNumber(String text) {
+        mTextViewNumber.setText(text);
+    }
+
+    @Override
+    public void setMileage(String text) {
+        mTextViewMileage.setText(text);
+    }
+
+    @Override
+    public void setRegistrationDate(String text) {
+        mTextViewRegistrationDate.setText(text);
+    }
+
+    @Override
+    public void setYear(String text) {
+        mTextViewYear.setText(text);
+    }
+
+    @Override
+    public void setFuel(String text) {
+        mTextViewFuel.setText(text);
     }
 }
 

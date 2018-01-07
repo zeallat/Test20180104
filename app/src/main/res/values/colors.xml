@@ -8,6 +8,7 @@
     <color name="dark">#212121</color>
     <color name="text.primary">#2f3038</color>
     <color name="text.secondary">#999</color>
+    <color name="text.white">#FFF</color>
 
 
     <color name="all_status_forsale">@color/colorPrimary</color>

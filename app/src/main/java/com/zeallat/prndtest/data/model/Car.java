@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import com.zeallat.prndtest.R;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -62,7 +63,7 @@ public class Car extends RealmObject implements Serializable {
     @SerializedName("image_urls")
     private RealmList<String> mImageUrls;
     @SerializedName("initial_registration_date")
-    private String mInitialRegistrationDate;
+    private Date mInitialRegistrationDate;
     @SerializedName("absolute_url")
     private String mAbsoluteUrl;
     @SerializedName("discounted_price")
@@ -129,11 +130,11 @@ public class Car extends RealmObject implements Serializable {
         mImageUrls = imageUrls;
     }
 
-    public String getInitialRegistrationDate() {
+    public Date getInitialRegistrationDate() {
         return mInitialRegistrationDate;
     }
 
-    public void setInitialRegistrationDate(String initialRegistrationDate) {
+    public void setInitialRegistrationDate(Date initialRegistrationDate) {
         mInitialRegistrationDate = initialRegistrationDate;
     }
 
@@ -230,5 +231,10 @@ public class Car extends RealmObject implements Serializable {
         if (!isEmpty(this.getAbsoluteUrl())) {
             this.setId(Integer.parseInt(Uri.parse(this.getAbsoluteUrl()).getLastPathSegment()));
         }
+    }
+
+    public int getRealPrice() {
+        if (getDiscountedPrice() == null) return getPrice();
+        return getStatusEnum() == Status.ON_SALE ? getDiscountedPrice() : getPrice();
     }
 }
