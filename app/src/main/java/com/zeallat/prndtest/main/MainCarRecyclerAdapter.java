@@ -1,8 +1,6 @@
 package com.zeallat.prndtest.main;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,7 @@ import butterknife.BindView;
  * Created by HoJunLee on 2018-01-06.
  */
 
-public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car> {
+public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, MainCarRecyclerAdapter.ItemViewHolder> {
 
     /**
      * 뷰 타입
@@ -46,14 +44,14 @@ public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car> {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layoutResId;
         switch (ViewType.values()[viewType]) {
             case VERTICAL:
                 layoutResId = R.layout.item_car_vertical;
                 break;
             case HORIZONTAL:
-                layoutResId = R.layout.item_car_horizontal;
+                layoutResId = R.layout.item_car_vertical;
                 break;
             default:
                 throw new IllegalArgumentException(String.format(Locale.KOREA, "not supported view type: %d", viewType));
@@ -64,24 +62,31 @@ public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ItemViewHolder holder, int position) {
         Car car = getItem(position);
-        ItemViewHolder viewHolder = (ItemViewHolder) holder;
-        Context context = viewHolder.itemView.getContext();
+        Context context = holder.itemView.getContext();
 
         //이미지 표시
-        Glide.with(context).load(car.getMainImageUrl()).thumbnail(0.1f).into(viewHolder.getImageViewContent());
+        Glide.with(context).load(car.getMainImageUrl()).into(holder.getImageViewContent());
         //텍스트 표시
-        viewHolder.getTextViewModelName().setText(car.getModelPartName());
-        viewHolder.getTextViewGradeName().setText(car.getGradePartName());
-        viewHolder.getTextViewStatus().setText(car.getStatusDisplay());
-        viewHolder.getTextViewYear().setText(String.valueOf(car.getYear()));
-        viewHolder.getTextViewMileage().setText(String.format(Locale.KOREA, "%.1f만km", ((float) car.getMileage() / 10000.f)));
-        viewHolder.getTextViewPrice()
+        holder.getTextViewModelName().setText(car.getModelPartName());
+        holder.getTextViewGradeName().setText(car.getGradePartName());
+        holder.getTextViewStatus().setText(car.getStatusDisplay());
+        holder.getTextViewYear().setText(String.valueOf(car.getYear()));
+        holder.getTextViewMileage().setText(String.format(Locale.KOREA, "%.1f만km", ((float) car.getMileage() / 10000.f)));
+        holder.getTextViewPrice()
                 .setText(String.format(Locale.KOREA, "%,d만원",
                         car.getDiscountedPrice() != null ? car.getDiscountedPrice() : car.getPrice()));
 
-        viewHolder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car.getStatusEnum().getColorResId()));
+        holder.getTextViewStatus().setBackgroundColor(car.getStatusEnum().getColorResId());
+        holder.getTextViewStatus().setBackgroundColor(car.getStatusEnum().getColorResId());
+
+        switch (ViewType.values()[holder.getItemViewType()]) {
+            case VERTICAL:
+                break;
+            case HORIZONTAL:
+                break;
+        }
     }
 
     @Override

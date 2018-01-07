@@ -9,14 +9,17 @@ import java.util.List;
  * Created by HoJunLee on 2018-01-06.
  */
 
-public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter {
+public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
     private List<T> mItems = new ArrayList<>();
     private OnItemClickListener<T> mOnClickListener;
+    private OnItemLongClickListener<T> mOnLongClickListener;
 
     public interface OnItemClickListener<T> {
         void onClick(int position, T item);
+    }
 
+    public interface OnItemLongClickListener<T> {
         void onLongClick(int position, T item);
     }
 
@@ -59,17 +62,21 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter {
         mOnClickListener = onClickListener;
     }
 
+    public void setOnLongClickListener(OnItemLongClickListener<T> onLongClickListener) {
+        mOnLongClickListener = onLongClickListener;
+    }
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(VH holder, int position) {
         holder.itemView.setOnClickListener(view -> {
             int adapterPosition = holder.getAdapterPosition();
-            if (mOnClickListener == null) return;
+            if (adapterPosition == RecyclerView.NO_POSITION || mOnClickListener == null) return;
             mOnClickListener.onClick(adapterPosition, getItem(adapterPosition));
         });
         holder.itemView.setOnLongClickListener(view -> {
             int adapterPosition = holder.getAdapterPosition();
-            if (mOnClickListener == null) return false;
-            mOnClickListener.onLongClick(adapterPosition, getItem(adapterPosition));
+            if (adapterPosition == RecyclerView.NO_POSITION || mOnLongClickListener == null) return false;
+            mOnLongClickListener.onLongClick(adapterPosition, getItem(adapterPosition));
             return true;
         });
     }

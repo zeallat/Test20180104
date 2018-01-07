@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseActivityConfig;
-import com.zeallat.prndtest.base.BaseRecyclerViewAdapter;
 import com.zeallat.prndtest.base.BaseViewActivity;
 import com.zeallat.prndtest.data.model.Searchable;
 
@@ -60,18 +59,7 @@ public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> i
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
-        mRecyclerAdapter.setOnClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<Searchable>() {
-            @Override
-            public void onClick(int position, Searchable item) {
-                mPresenter.onClickSearchItem(item);
-            }
-
-            @Override
-            public void onLongClick(int position, Searchable item) {
-
-            }
-        });
+        mRecyclerAdapter.setOnClickListener((position, item) -> mPresenter.onClickSearchItem(item));
     }
 
     @Override

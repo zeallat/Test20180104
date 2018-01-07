@@ -84,11 +84,6 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
             public void onClick(int position, Car item) {
 
             }
-
-            @Override
-            public void onLongClick(int position, Car item) {
-
-            }
         });
     }
 

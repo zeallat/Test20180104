@@ -1,6 +1,5 @@
 package com.zeallat.prndtest.search;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,30 +16,22 @@ import butterknife.BindView;
  * Created by HoJunLee on 2018-01-07.
  */
 
-public class SearchRecyclerAdapter extends BaseRecyclerViewAdapter<Searchable> {
-
-//    private Searchable.Type mType;
-
-//    public SearchRecyclerAdapter(@NonNull Searchable.Type type) {
-//        checkNotNull(type);
-//        mType = type;
-//    }
+public class SearchRecyclerAdapter extends BaseRecyclerViewAdapter<Searchable, SearchRecyclerAdapter.ItemViewHolder> {
 
     public SearchRecyclerAdapter() {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search, parent, false);
         return new ItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ItemViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        ItemViewHolder viewHolder = (ItemViewHolder) holder;
         Searchable searchable = getItem(position);
-        viewHolder.getTextViewName().setText(searchable.getDisplayName());
+        holder.getTextViewName().setText(searchable.getDisplayName());
 
 //        switch (mType) {
 //            case BRAND:
