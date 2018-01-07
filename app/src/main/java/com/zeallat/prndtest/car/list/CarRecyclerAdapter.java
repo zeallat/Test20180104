@@ -15,6 +15,7 @@ import com.zeallat.prndtest.base.BaseRecyclerViewAdapter;
 import com.zeallat.prndtest.base.BaseRecyclerViewHolder;
 import com.zeallat.prndtest.data.model.Car;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -84,7 +85,9 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
         holder.getTextViewGradeName().setText(car.getGradePartName());
         holder.getTextViewStatus().setText(car.getStatusDisplay());
         holder.getTextViewYear().setText(String.valueOf(car.getYear()));
-        holder.getTextViewMileage().setText(String.format(Locale.KOREA, "%.1f만km", ((float) car.getMileage() / 10000.f)));
+        holder.getTextViewMileage().setText(
+                String.format(Locale.KOREA, "%s만km",
+                        new DecimalFormat("#.#").format(((float) car.getMileage() / 10000.f))));
         holder.getTextViewPrice().setText(formatPrice(car.getRealPrice()));
         holder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car.getStatusEnum().getColorResId()));
     }
