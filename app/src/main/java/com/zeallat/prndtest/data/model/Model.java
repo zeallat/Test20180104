@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Model extends RealmObject {
+public class Model extends RealmObject implements Searchable {
 
     @SerializedName("absolute_url")
     private String mAbsoluteUrl;
@@ -40,4 +40,8 @@ public class Model extends RealmObject {
         mName = name;
     }
 
+    @Override
+    public String getDisplayName() {
+        return mName;
+    }
 }

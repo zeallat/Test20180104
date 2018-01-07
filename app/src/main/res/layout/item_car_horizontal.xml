@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_card_bg"
+    android:foreground="?android:selectableItemBackground"
     android:orientation="horizontal">
 
     <com.zeallat.prndtest.view.SquareRelativeLayout

@@ -14,12 +14,16 @@ public interface MainContract {
         void setCars(List<Car> cars);
 
         void finishRefresh();
+
+        void showSearchPage();
     }
 
     interface Presenter extends BasePresenter {
         void onRefreshCars();
 
         void reachBottomOfCars();
+
+        void onClickSearchBox();
     }
 }
 

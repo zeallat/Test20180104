@@ -80,7 +80,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         mHandler = new Handler(Looper.getMainLooper());
         mRequestManager = Glide.with(this);
         if (BuildConfig.DEBUG)
-            Log.d("BaseActivity", String.format("==========================\nActivity has create : %s\n==========================", getLocalClassName()));
+            Log.d("BaseActivity", String.format("==========================\nActivity has create : %s\n==========================",
+                    getLocalClassName()));
         //액티비티 애니메이션 처리
         isNewActivity = true;
         if (savedInstanceState == null) {
@@ -192,7 +193,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                         });
                         break;
                     case BACK:
-                        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24px);
+                        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24px);
                         toolbar.setNavigationOnClickListener(view -> onBackPressed());
                         break;
                     case NONE:

@@ -11,8 +11,11 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SizeUtils;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseActivityConfig;
+import com.zeallat.prndtest.base.BaseRecyclerViewAdapter;
 import com.zeallat.prndtest.base.BaseViewActivity;
 import com.zeallat.prndtest.data.model.Car;
+import com.zeallat.prndtest.data.model.Searchable;
+import com.zeallat.prndtest.search.SearchActivity;
 import com.zeallat.prndtest.view.decoration.GridSpacingItemDecoration;
 import com.zeallat.prndtest.view.listener.EndlessScrollListener;
 
@@ -47,6 +50,7 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
 
     @OnClick(R.id.containerSearch)
     public void onViewClicked() {
+        mPresenter.onClickSearchBox();
     }
 
     private void initView() {
@@ -75,6 +79,17 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
             }
         });
         mSwipeRefreshLayout.setOnRefreshListener(() -> mPresenter.onRefreshCars());
+        mCarRecyclerAdapter.setOnClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<Car>() {
+            @Override
+            public void onClick(int position, Car item) {
+
+            }
+
+            @Override
+            public void onLongClick(int position, Car item) {
+
+            }
+        });
     }
 
     @Override
@@ -90,6 +105,13 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
     @Override
     public void setCars(List<Car> cars) {
         mCarRecyclerAdapter.setItems(cars);
+    }
+
+    @Override
+    public void showSearchPage() {
+        Bundle extras = new Bundle();
+        extras.putSerializable(SearchActivity.EXTRA_TYPE, Searchable.Type.BRAND);
+        startActivity(SearchActivity.class, extras);
     }
 }
 

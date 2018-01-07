@@ -12,6 +12,13 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
     private List<T> mItems = new ArrayList<>();
+    private OnItemClickListener<T> mOnClickListener;
+
+    public interface OnItemClickListener<T> {
+        void onClick(int position, T item);
+
+        void onLongClick(int position, T item);
+    }
 
     @Override
     public int getItemCount() {
@@ -46,5 +53,24 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter {
 
     protected T getItem(int index) {
         return mItems.get(index);
+    }
+
+    public void setOnClickListener(OnItemClickListener<T> onClickListener) {
+        mOnClickListener = onClickListener;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(view -> {
+            int adapterPosition = holder.getAdapterPosition();
+            if (mOnClickListener == null) return;
+            mOnClickListener.onClick(adapterPosition, getItem(adapterPosition));
+        });
+        holder.itemView.setOnLongClickListener(view -> {
+            int adapterPosition = holder.getAdapterPosition();
+            if (mOnClickListener == null) return false;
+            mOnClickListener.onLongClick(adapterPosition, getItem(adapterPosition));
+            return true;
+        });
     }
 }

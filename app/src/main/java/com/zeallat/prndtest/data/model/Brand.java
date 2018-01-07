@@ -7,7 +7,7 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Brand extends RealmObject {
+public class Brand extends RealmObject implements Searchable {
 
     @SerializedName("absolute_url")
     private String mAbsoluteUrl;
@@ -49,5 +49,10 @@ public class Brand extends RealmObject {
 
     public void setModelGroups(RealmList<ModelGroup> modelGroups) {
         mModelGroups = modelGroups;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return mName;
     }
 }

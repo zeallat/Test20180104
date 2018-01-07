@@ -82,13 +82,6 @@ public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car> {
                         car.getDiscountedPrice() != null ? car.getDiscountedPrice() : car.getPrice()));
 
         viewHolder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car.getStatusEnum().getColorResId()));
-
-        switch (ViewType.values()[holder.getItemViewType()]) {
-            case VERTICAL:
-                break;
-            case HORIZONTAL:
-                break;
-        }
     }
 
     @Override

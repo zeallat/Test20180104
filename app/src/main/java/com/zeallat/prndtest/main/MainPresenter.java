@@ -3,7 +3,6 @@ package com.zeallat.prndtest.main;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.gson.GsonBuilder;
 import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.source.BaseDataSource;
@@ -17,7 +16,6 @@ public class MainPresenter implements MainContract.Presenter {
     private MainContract.View mView;
     private CarRepository mCarRepository = new CarRepository();
     private int mCurrentPage = 1;
-
 
     public MainPresenter(MainContract.View view) {
         mView = view;
@@ -50,9 +48,6 @@ public class MainPresenter implements MainContract.Presenter {
         mCarRepository.query(defaultSpecification, new BaseDataSource.GetDataCallback<Car>() {
             @Override
             public void onDataLoaded(List<Car> datas, @Nullable PaginationInfo paginationInfo) {
-                Log.d("MainPresenter", "onDataLoaded");
-                Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(paginationInfo));
-                Log.d("MainPresenter", new GsonBuilder().setPrettyPrinting().create().toJson(datas));
                 if (isResetRequired) {
                     mView.setCars(datas);
                     mView.finishRefresh();
@@ -78,5 +73,10 @@ public class MainPresenter implements MainContract.Presenter {
     public void reachBottomOfCars() {
         mCurrentPage++;
         getCars(false);
+    }
+
+    @Override
+    public void onClickSearchBox() {
+        mView.showSearchPage();
     }
 }
