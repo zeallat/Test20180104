@@ -1,7 +1,6 @@
 package com.zeallat.prndtest.car.list;
 
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.model.PaginationInfo;
@@ -57,6 +56,7 @@ public class CarPresenter implements CarListContract.Presenter {
             @Override
             public void onDataLoaded(List<Car> datas, @Nullable PaginationInfo paginationInfo) {
                 if (isResetRequired) {
+                    mView.setNoItemViewVisible(datas.isEmpty());
                     mView.setCars(datas);
                     mView.finishRefresh();
                 } else {
@@ -66,7 +66,7 @@ public class CarPresenter implements CarListContract.Presenter {
 
             @Override
             public void onDataNotAvailable() {
-                Log.d("CarPresenter", "onDataNotAvailable");
+                if (isResetRequired) mView.setNoItemViewVisible(true);
             }
         });
     }

@@ -24,6 +24,8 @@ public interface CarListContract {
         void setSearchKeyword(String searchKeyword);
 
         void showCarDetailPage(int carId);
+
+        void setNoItemViewVisible(boolean isVisible);
     }
 
     interface Presenter extends BasePresenter {

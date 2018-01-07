@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
     @BindView(R.id.containerSearch) LinearLayout mContainerSearch;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.containerNoItem) LinearLayout mContainerNoItem;
 
     private CarRecyclerAdapter mCarRecyclerAdapter;
     private GridLayoutManager mGridLayoutManager;
@@ -135,6 +137,11 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
         Bundle extras = new Bundle();
         extras.putInt(CarDetailActivity.EXTRA_CAR_ID, carId);
         startActivity(CarDetailActivity.class, extras);
+    }
+
+    @Override
+    public void setNoItemViewVisible(boolean isVisible) {
+        mContainerNoItem.setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 }
 
