@@ -28,6 +28,8 @@ public interface CarDetailContract {
         void setYear(String text);
 
         void setFuel(String text);
+
+        void setNoItemViewVisible(boolean isVisible);
     }
 
     interface Presenter extends BasePresenter {

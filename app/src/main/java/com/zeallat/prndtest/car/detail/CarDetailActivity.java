@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zeallat.prndtest.R;
@@ -16,7 +17,6 @@ import com.zeallat.prndtest.view.HTMLTextView;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.relex.circleindicator.CircleIndicator;
 
@@ -35,6 +35,7 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
     @BindView(R.id.textViewFuel) TextView mTextViewFuel;
     @BindView(R.id.textViewCall) TextView mTextViewCall;
     @BindView(R.id.viewPagerIndicatoer) CircleIndicator mViewPagerIndicatoer;
+    @BindView(R.id.containerNoItem) LinearLayout mContainerNoItem;
 
     private int mCarId;
     private CarImagePagerAdapter mCarImagePagerAdapter;
@@ -47,7 +48,6 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
         }
         new CarDetailPresenter(this, mCarId);
         setContentView(R.layout.activity_car_detail);
-        ButterKnife.bind(this);
         initView();
         super.onCreate(savedInstanceState);
     }
@@ -126,6 +126,11 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
     @Override
     public void setFuel(String text) {
         mTextViewFuel.setText(text);
+    }
+
+    @Override
+    public void setNoItemViewVisible(boolean isVisible) {
+        mContainerNoItem.setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 }
 

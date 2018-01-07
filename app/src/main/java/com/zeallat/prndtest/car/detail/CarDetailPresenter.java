@@ -65,6 +65,7 @@ public class CarDetailPresenter implements CarDetailContract.Presenter {
                     mView.setRegistrationDate(formatDate(mCar.getInitialRegistrationDate().getTime(), DateUtil.Format.MONTH));
                     mView.setYear(String.format(Locale.KOREA, "%d년", mCar.getYear()));
                     mView.setFuel(mCar.getFuel());
+                    mView.setNoItemViewVisible(mCar.getImageUrls() == null || mCar.getImageUrls().isEmpty());
                 }
             }
 
