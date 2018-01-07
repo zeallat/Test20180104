@@ -51,4 +51,7 @@ public class Api {
         return retrofit.create(CarService.class);
     }
 
+    public CarMetaService getCarMetaService() {
+        return retrofit.create(CarMetaService.class);
+    }
 }
