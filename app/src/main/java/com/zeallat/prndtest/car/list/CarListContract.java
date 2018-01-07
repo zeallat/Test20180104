@@ -1,4 +1,4 @@
-package com.zeallat.prndtest.main;
+package com.zeallat.prndtest.car.list;
 
 
 import com.zeallat.prndtest.base.BasePresenter;
@@ -7,7 +7,7 @@ import com.zeallat.prndtest.data.model.Car;
 
 import java.util.List;
 
-public interface MainContract {
+public interface CarListContract {
     interface View extends BaseView<Presenter> {
         void addCars(List<Car> cars);
 

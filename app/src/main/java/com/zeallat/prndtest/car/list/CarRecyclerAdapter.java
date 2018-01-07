@@ -1,4 +1,4 @@
-package com.zeallat.prndtest.main;
+package com.zeallat.prndtest.car.list;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -22,7 +22,7 @@ import butterknife.BindView;
  * Created by HoJunLee on 2018-01-06.
  */
 
-public class MainCarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, MainCarRecyclerAdapter.ItemViewHolder> {
+public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecyclerAdapter.ItemViewHolder> {
 
     /**
      * 뷰 타입

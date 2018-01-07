@@ -1,4 +1,4 @@
-package com.zeallat.prndtest.main;
+package com.zeallat.prndtest.car.list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseViewActivity<MainContract.Presenter> implements MainContract.View {
+public class CarListActivity extends BaseViewActivity<CarListContract.Presenter> implements CarListContract.View {
 
     public static final String EXTRA_MODEL_ID = "ebf579a7-11af-452b-b1d5-32045c0fe3d1";
     public static final String EXTRA_MODEL_NAME = "acd00022-b4f1-44d5-9046-feb173e795e6";
@@ -34,7 +34,7 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private MainCarRecyclerAdapter mCarRecyclerAdapter;
+    private CarRecyclerAdapter mCarRecyclerAdapter;
     private GridLayoutManager mGridLayoutManager;
     private static final int GRID_SPAN_COUNT = 2;
 
@@ -48,7 +48,7 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
             mSearchModelId = extras.getInt(EXTRA_MODEL_ID, -1);
             mSearchModelName = extras.getString(EXTRA_MODEL_NAME, "");
         }
-        new MainPresenter(this);
+        new CarPresenter(this);
         setContentView(R.layout.activity_main);
         initView();
         super.onCreate(savedInstanceState);
@@ -65,14 +65,14 @@ public class MainActivity extends BaseViewActivity<MainContract.Presenter> imple
     }
 
     private void initView() {
-        mCarRecyclerAdapter = new MainCarRecyclerAdapter();
+        mCarRecyclerAdapter = new CarRecyclerAdapter();
         mGridLayoutManager = new GridLayoutManager(this, GRID_SPAN_COUNT);
 
         //Rule for calculate span size
         GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                return MainCarRecyclerAdapter.ViewType.valueOf(position).getSpanSize();
+                return CarRecyclerAdapter.ViewType.valueOf(position).getSpanSize();
             }
         };
         mGridLayoutManager.setSpanSizeLookup(spanSizeLookup);

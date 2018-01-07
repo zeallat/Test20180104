@@ -1,4 +1,4 @@
-package com.zeallat.prndtest.main;
+package com.zeallat.prndtest.car.list;
 
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,13 +13,13 @@ import com.zeallat.prndtest.data.source.DefaultSpecification;
 
 import java.util.List;
 
-public class MainPresenter implements MainContract.Presenter {
+public class CarPresenter implements CarListContract.Presenter {
 
-    private MainContract.View mView;
+    private CarListContract.View mView;
     private CarRepository mCarRepository = new CarRepository();
     private int mCurrentPage = 1;
 
-    public MainPresenter(MainContract.View view) {
+    public CarPresenter(CarListContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
@@ -66,7 +66,7 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onDataNotAvailable() {
-                Log.d("MainPresenter", "onDataNotAvailable");
+                Log.d("CarPresenter", "onDataNotAvailable");
             }
         });
     }

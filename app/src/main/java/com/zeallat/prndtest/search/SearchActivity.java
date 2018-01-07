@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseActivityConfig;
 import com.zeallat.prndtest.base.BaseViewActivity;
+import com.zeallat.prndtest.car.list.CarListActivity;
 import com.zeallat.prndtest.data.model.Searchable;
-import com.zeallat.prndtest.main.MainActivity;
 
 import java.util.List;
 
@@ -97,9 +97,9 @@ public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> i
     @Override
     public void showModelSearchResultPage(int modelId, String modelName) {
         Bundle extras = new Bundle();
-        extras.putInt(MainActivity.EXTRA_MODEL_ID, modelId);
-        extras.putString(MainActivity.EXTRA_MODEL_NAME, modelName);
-        startActivity(MainActivity.class, extras);
+        extras.putInt(CarListActivity.EXTRA_MODEL_ID, modelId);
+        extras.putString(CarListActivity.EXTRA_MODEL_NAME, modelName);
+        startActivity(CarListActivity.class, extras);
     }
 }
 
