@@ -1,6 +1,5 @@
 package com.zeallat.prndtest.search;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -100,10 +99,7 @@ public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> i
         Bundle extras = new Bundle();
         extras.putInt(MainActivity.EXTRA_MODEL_ID, modelId);
         extras.putString(MainActivity.EXTRA_MODEL_NAME, modelName);
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtras(extras);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startActivity(MainActivity.class, extras);
     }
 }
 

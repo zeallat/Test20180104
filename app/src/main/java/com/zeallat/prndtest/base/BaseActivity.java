@@ -86,7 +86,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         isNewActivity = true;
         if (savedInstanceState == null) {
             if (isTransitionOverrideEnable)
-                this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left_slow);
         } else {
             isNewActivity = false;
         }
@@ -244,7 +244,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         mUnbinder.unbind();
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -252,7 +251,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (isNewActivity) {
             isNewActivity = false;
         } else {
-            this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            this.overridePendingTransition(R.anim.slide_in_right_slow, R.anim.slide_out_right);
         }
 
         try {
