@@ -2,10 +2,19 @@ package com.zeallat.prndtest.util;
 
 import android.graphics.Color;
 import android.os.Build;
+import android.os.SystemClock;
 import android.view.View;
 
+import com.zeallat.prndtest.R;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static android.text.TextUtils.isEmpty;
+import static com.google.common.base.MoreObjects.firstNonNull;
 
 /**
  * ViewUtil.java
@@ -42,5 +51,33 @@ public class ViewUtil {
     public static int getRandomColor() {
         Random rnd = new Random();
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+    }
+
+    private static Map<String, Long> mLastClickedTimeMap = new HashMap<>();
+    private static final int CLICK_DELAY_MIN = 600;
+
+    /**
+     * 중복 클릭 체크 메서드
+     *
+     * @param view
+     * @return
+     */
+    public static boolean isRecentlyClicked(View view) {
+        String viewIdTag = (String) firstNonNull(view.getTag(R.id.key_tag_uuid), "");
+        long currentTime = SystemClock.elapsedRealtime();
+        if (isEmpty(viewIdTag)) {
+            viewIdTag = UUID.randomUUID().toString();
+            view.setTag(R.id.key_tag_uuid, viewIdTag);
+            mLastClickedTimeMap.put(viewIdTag, currentTime);
+            return false;
+        } else {
+            long lastClickedTime = mLastClickedTimeMap.get(viewIdTag);
+            if (lastClickedTime + CLICK_DELAY_MIN < currentTime) {//Click is allowed
+                mLastClickedTimeMap.put(viewIdTag, currentTime);
+                return false;
+            } else {//Click is not allowed
+                return true;
+            }
+        }
     }
 }

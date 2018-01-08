@@ -20,6 +20,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import me.relex.circleindicator.CircleIndicator;
 
+import static com.zeallat.prndtest.util.ViewUtil.isRecentlyClicked;
+
 public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presenter> implements CarDetailContract.View {
 
     public static final String EXTRA_CAR_ID = "556b8b3f-eb7d-420b-8364-fa7000f48437";
@@ -77,7 +79,8 @@ public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presen
     }
 
     @OnClick(R.id.textViewCall)
-    public void onViewClicked() {
+    public void onViewClicked(View view) {
+        if (isRecentlyClicked(view)) return;
         mPresenter.onClickButtonCall();
     }
 

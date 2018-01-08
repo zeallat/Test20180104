@@ -25,6 +25,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.zeallat.prndtest.util.ViewUtil.isRecentlyClicked;
+
 public class CarListActivity extends BaseViewActivity<CarListContract.Presenter> implements CarListContract.View {
 
     public static final String EXTRA_MODEL_ID = "ebf579a7-11af-452b-b1d5-32045c0fe3d1";
@@ -62,7 +64,8 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
     }
 
     @OnClick(R.id.containerSearch)
-    public void onViewClicked() {
+    public void onViewClicked(View view) {
+        if (isRecentlyClicked(view)) return;
         mPresenter.onClickSearchBox();
     }
 

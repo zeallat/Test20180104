@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.zeallat.prndtest.util.ViewUtil.isRecentlyClicked;
+
 /**
  * Created by HoJunLee on 2018-01-06.
  */
@@ -69,11 +71,13 @@ public abstract class BaseRecyclerViewAdapter<T, VH extends RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(VH holder, int position) {
         holder.itemView.setOnClickListener(view -> {
+            if (isRecentlyClicked(view)) return;
             int adapterPosition = holder.getAdapterPosition();
             if (adapterPosition == RecyclerView.NO_POSITION || mOnClickListener == null) return;
             mOnClickListener.onClick(adapterPosition, getItem(adapterPosition));
         });
         holder.itemView.setOnLongClickListener(view -> {
+            if (isRecentlyClicked(view)) return true;
             int adapterPosition = holder.getAdapterPosition();
             if (adapterPosition == RecyclerView.NO_POSITION || mOnLongClickListener == null) return false;
             mOnLongClickListener.onLongClick(adapterPosition, getItem(adapterPosition));
