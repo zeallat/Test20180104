@@ -140,4 +140,9 @@ public abstract class BaseViewFragment<T extends BasePresenter> extends BaseFrag
         super.onDestroy();
         mPresenter.onDestroy();
     }
+
+    @Override
+    public boolean isDestroyed() {
+        return mBaseViewDelegate.isDestroyed();
+    }
 }

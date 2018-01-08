@@ -77,6 +77,7 @@ public class SearchPresenter implements SearchContract.Presenter {
         mBrandRepository.query(new BaseDataSource.GetDataCallback<Brand>() {
             @Override
             public void onDataLoaded(List<Brand> datas, @Nullable PaginationInfo paginationInfo) {
+                if (mView.isDestroyed()) return;
                 List<Searchable> searchables = new ArrayList<>();
                 searchables.addAll(datas);
                 mView.setSearchResult(searchables);
@@ -95,6 +96,7 @@ public class SearchPresenter implements SearchContract.Presenter {
         mBrandRepository.query(new BrandSpecificationById(brandId), new BaseDataSource.GetDataCallback<Brand>() {
             @Override
             public void onDataLoaded(List<Brand> datas, @Nullable PaginationInfo paginationInfo) {
+                if (mView.isDestroyed()) return;
                 if (datas.size() > 0) {
                     List<Searchable> searchables = new ArrayList<>();
                     searchables.addAll(datas.get(0).getModelGroups());
@@ -115,6 +117,7 @@ public class SearchPresenter implements SearchContract.Presenter {
         mModelGroupRepository.query(new ModelGroupSpecificationById(modelGroupId), new BaseDataSource.GetDataCallback<ModelGroup>() {
             @Override
             public void onDataLoaded(List<ModelGroup> datas, @Nullable PaginationInfo paginationInfo) {
+                if (mView.isDestroyed()) return;
                 if (datas.size() > 0) {
                     List<Searchable> searchables = new ArrayList<>();
                     searchables.addAll(datas.get(0).getModels());

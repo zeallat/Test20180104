@@ -180,4 +180,17 @@ public class BaseViewDelegate<T extends BasePresenter> implements BaseView<T> {
     public void showProgressDialog() {
         showProgressDialog("");
     }
+
+    @Override
+    public boolean isDestroyed() {
+        if (mFragment != null) {
+            return (mFragment.isRemoving()
+                    || mFragment.getActivity() == null
+                    || mFragment.isDetached()
+                    || !mFragment.isAdded()
+                    || mFragment.getView() == null);
+        } else {
+            return mActivity.isDestroyed();
+        }
+    }
 }

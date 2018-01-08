@@ -54,4 +54,5 @@ public interface BaseView<T> {
 
     void dismissProgressDialog();
 
+    boolean isDestroyed();
 }

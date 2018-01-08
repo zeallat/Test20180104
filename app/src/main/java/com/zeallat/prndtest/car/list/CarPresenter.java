@@ -55,6 +55,7 @@ public class CarPresenter implements CarListContract.Presenter {
         mCarRepository.query(specification, new BaseDataSource.GetDataCallback<Car>() {
             @Override
             public void onDataLoaded(List<Car> datas, @Nullable PaginationInfo paginationInfo) {
+                if (mView.isDestroyed()) return;
                 if (isResetRequired) {
                     mView.setNoItemViewVisible(datas.isEmpty());
                     mView.setCars(datas);
@@ -66,6 +67,7 @@ public class CarPresenter implements CarListContract.Presenter {
 
             @Override
             public void onDataNotAvailable() {
+                if (mView.isDestroyed()) return;
                 if (isResetRequired) mView.setNoItemViewVisible(true);
             }
         });

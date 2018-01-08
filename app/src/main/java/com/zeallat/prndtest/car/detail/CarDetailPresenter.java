@@ -53,6 +53,7 @@ public class CarDetailPresenter implements CarDetailContract.Presenter {
         mCarRepository.query(new CarSpecificationById(mCarId), new BaseDataSource.GetDataCallback<Car>() {
             @Override
             public void onDataLoaded(List<Car> datas, @Nullable PaginationInfo paginationInfo) {
+                if (mView.isDestroyed()) return;
                 if (datas.size() > 0) {
                     mCar = datas.get(0);
                     mView.setCarImages(mCar.getImageUrls());
