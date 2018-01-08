@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseActivityConfig;
@@ -22,6 +23,7 @@ public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> i
     public static final String EXTRA_SEARCH_ID = "5de0e860-1537-479d-86c4-c52c82451932";
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.containerNoItem) View mContainerNoItem;
 
     private Searchable.Type mType = Searchable.Type.BRAND;
     private int mSearchId = -1;
@@ -100,6 +102,11 @@ public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> i
         extras.putInt(CarListActivity.EXTRA_MODEL_ID, modelId);
         extras.putString(CarListActivity.EXTRA_MODEL_NAME, modelName);
         startActivity(CarListActivity.class, extras);
+    }
+
+    @Override
+    public void setNoItemViewVisible(boolean isVisible) {
+        mContainerNoItem.setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 }
 

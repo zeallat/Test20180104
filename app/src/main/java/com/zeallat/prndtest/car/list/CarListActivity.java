@@ -36,7 +36,7 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
     @BindView(R.id.containerSearch) LinearLayout mContainerSearch;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout mSwipeRefreshLayout;
-    @BindView(R.id.containerNoItem) LinearLayout mContainerNoItem;
+    @BindView(R.id.containerNoItem) View mContainerNoItem;
 
     private CarRecyclerAdapter mCarRecyclerAdapter;
     private GridLayoutManager mGridLayoutManager;

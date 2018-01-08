@@ -18,6 +18,8 @@ public interface SearchContract {
         void showModelSearchResultPage(int modelId, String modelName);
 
         int getSearchId();
+
+        void setNoItemViewVisible(boolean isVisible);
     }
 
     interface Presenter extends BasePresenter {

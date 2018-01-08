@@ -78,6 +78,7 @@ public class SearchPresenter implements SearchContract.Presenter {
             @Override
             public void onDataLoaded(List<Brand> datas, @Nullable PaginationInfo paginationInfo) {
                 if (mView.isDestroyed()) return;
+                mView.setNoItemViewVisible(false);
                 List<Searchable> searchables = new ArrayList<>();
                 searchables.addAll(datas);
                 mView.setSearchResult(searchables);
@@ -85,7 +86,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
             @Override
             public void onDataNotAvailable() {
-
+                mView.setNoItemViewVisible(true);
             }
         });
     }
@@ -97,6 +98,7 @@ public class SearchPresenter implements SearchContract.Presenter {
             @Override
             public void onDataLoaded(List<Brand> datas, @Nullable PaginationInfo paginationInfo) {
                 if (mView.isDestroyed()) return;
+                mView.setNoItemViewVisible(false);
                 if (datas.size() > 0) {
                     List<Searchable> searchables = new ArrayList<>();
                     searchables.addAll(datas.get(0).getModelGroups());
@@ -106,7 +108,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
             @Override
             public void onDataNotAvailable() {
-
+                mView.setNoItemViewVisible(true);
             }
         });
     }
@@ -118,6 +120,7 @@ public class SearchPresenter implements SearchContract.Presenter {
             @Override
             public void onDataLoaded(List<ModelGroup> datas, @Nullable PaginationInfo paginationInfo) {
                 if (mView.isDestroyed()) return;
+                mView.setNoItemViewVisible(false);
                 if (datas.size() > 0) {
                     List<Searchable> searchables = new ArrayList<>();
                     searchables.addAll(datas.get(0).getModels());
@@ -127,7 +130,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
             @Override
             public void onDataNotAvailable() {
-
+                mView.setNoItemViewVisible(true);
             }
         });
     }

@@ -55,27 +55,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <include
                 android:id="@+id/containerNoItem"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:srcCompat="@drawable/ic_find_in_page"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="@string/all_error_no_item"
-                    android:textSize="@dimen/all_textsize_large"/>
-
-            </LinearLayout>
+                layout="@layout/view_no_item"
+                android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
