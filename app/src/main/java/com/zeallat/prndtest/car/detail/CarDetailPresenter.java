@@ -79,6 +79,6 @@ public class CarDetailPresenter implements CarDetailContract.Presenter {
 
     @Override
     public void onClickButtonCall() {
-        //TODO: call
+        mView.showToastShort("연락하기 버튼이 클릭되었습니다.");
     }
 }
