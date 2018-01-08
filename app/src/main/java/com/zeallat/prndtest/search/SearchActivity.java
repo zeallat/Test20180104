@@ -47,13 +47,13 @@ public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> i
         config.setToolbarEnable(true).setToolbarNavigationType(NavigationType.BACK);
         switch (mType) {
             case BRAND:
-                config.setToolbarTitle("브랜드 선택");
+                config.setToolbarTitle(R.string.search_title_brand);
                 break;
             case MODEL_GROUP:
-                config.setToolbarTitle("차종 선택");
+                config.setToolbarTitle(R.string.search_title_model_group);
                 break;
             case MODEL:
-                config.setToolbarTitle("모델 선택");
+                config.setToolbarTitle(R.string.search_title_model);
                 break;
         }
     }

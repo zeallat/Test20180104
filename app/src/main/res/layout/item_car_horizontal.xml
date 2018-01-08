@@ -82,7 +82,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="형식년도"
+                android:text="@string/all_msg_car_year"
                 android:textColor="@color/text.secondary"/>
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="주행거리"
+                android:text="@string/all_msg_mileage"
                 android:textColor="@color/text.secondary"/>
 
             <TextView
@@ -127,7 +127,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="가격"
+                android:text="@string/all_msg_price"
                 android:textColor="@color/text.secondary"/>
 
             <TextView

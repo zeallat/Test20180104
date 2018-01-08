@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">PRND Test</string>
+    <string name="carlist_msg_search_model">차종검색</string>
+    <string name="all_error_no_item">검색결과가 없습니다</string>
+    <string name="cardetail_error_no_image">차량 이미지가 없습니다</string>
+    <string name="all_msg_car_number">차량번호</string>
+    <string name="all_msg_mileage">주행거리</string>
+    <string name="all_msg_registration_date">최초등록일</string>
+    <string name="all_msg_car_year">형식년도</string>
+    <string name="all_msg_fuel">연료</string>
+    <string name="all_action_contact">연락하기</string>
+    <string name="all_msg_price">가격</string>
+    <string name="cardetail_msg_contact_button_clicked">연락하기 버튼이 클릭되었습니다.</string>
+    <string name="all_format_mileage">%,dkm</string>
+    <string name="all_format_year">%d년</string>
+    <string name="all_msg_mileage_2">%s만km</string>
+    <string name="search_title_brand">브랜드 선택</string>
+    <string name="search_title_model_group">차종 선택</string>
+    <string name="search_title_model">모델 선택</string>
 </resources>

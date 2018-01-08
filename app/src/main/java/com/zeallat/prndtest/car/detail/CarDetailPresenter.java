@@ -3,12 +3,14 @@ package com.zeallat.prndtest.car.detail;
 
 import android.support.annotation.Nullable;
 
+import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.model.specification.CarSpecificationById;
 import com.zeallat.prndtest.data.source.BaseDataSource;
 import com.zeallat.prndtest.data.source.CarRepository;
 import com.zeallat.prndtest.util.DateUtil;
+import com.zeallat.prndtest.util.StringUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -62,9 +64,9 @@ public class CarDetailPresenter implements CarDetailContract.Presenter {
                     mView.setOriginalPrice(formatPrice(mCar.getPrice()));
                     mView.setStatus(mCar.getStatusEnum(), mCar.getStatusDisplay());
                     mView.setNumber(mCar.getCarNumber());
-                    mView.setMileage(String.format(Locale.KOREA, "%,dkm", mCar.getMileage()));
+                    mView.setMileage(String.format(Locale.KOREA, StringUtil.getString(R.string.all_format_mileage), mCar.getMileage()));
                     mView.setRegistrationDate(formatDate(mCar.getInitialRegistrationDate().getTime(), DateUtil.Format.MONTH));
-                    mView.setYear(String.format(Locale.KOREA, "%d년", mCar.getYear()));
+                    mView.setYear(String.format(Locale.KOREA, StringUtil.getString(R.string.all_format_year), mCar.getYear()));
                     mView.setFuel(mCar.getFuel());
                     mView.setNoItemViewVisible(mCar.getImageUrls() == null || mCar.getImageUrls().isEmpty());
                 }
@@ -79,6 +81,6 @@ public class CarDetailPresenter implements CarDetailContract.Presenter {
 
     @Override
     public void onClickButtonCall() {
-        mView.showToastShort("연락하기 버튼이 클릭되었습니다.");
+        mView.showToastShort(R.string.cardetail_msg_contact_button_clicked);
     }
 }

@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="차량 이미지가 없습니다"
+                android:text="@string/cardetail_error_no_image"
                 android:textColor="@color/text.secondary"/>
 
         </LinearLayout>
@@ -99,7 +99,7 @@
 
             <TextView
                 style="@style/CarDetailDescriptionTitleTextView"
-                android:text="차량번호"/>
+                android:text="@string/all_msg_car_number"/>
 
             <TextView
                 android:id="@+id/textViewNumber"
@@ -111,7 +111,7 @@
 
             <TextView
                 style="@style/CarDetailDescriptionTitleTextView"
-                android:text="주행거리"/>
+                android:text="@string/all_msg_mileage"/>
 
             <TextView
                 android:id="@+id/textViewMileage"
@@ -123,7 +123,7 @@
 
             <TextView
                 style="@style/CarDetailDescriptionTitleTextView"
-                android:text="최초등록일"/>
+                android:text="@string/all_msg_registration_date"/>
 
             <TextView
                 android:id="@+id/textViewRegistrationDate"
@@ -135,7 +135,7 @@
 
             <TextView
                 style="@style/CarDetailDescriptionTitleTextView"
-                android:text="형식년도"/>
+                android:text="@string/all_msg_car_year"/>
 
             <TextView
                 android:id="@+id/textViewYear"
@@ -147,7 +147,7 @@
 
             <TextView
                 style="@style/CarDetailDescriptionTitleTextView"
-                android:text="연료"/>
+                android:text="@string/all_msg_fuel"/>
 
             <TextView
                 android:id="@+id/textViewFuel"
@@ -164,7 +164,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="16dp"
-        android:text="연락하기"
+        android:text="@string/all_action_contact"
         android:textColor="@color/text.white"
         android:textSize="@dimen/all_textsize_large"
         android:textStyle="bold"/>

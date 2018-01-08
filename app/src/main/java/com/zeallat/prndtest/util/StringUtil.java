@@ -1,5 +1,9 @@
 package com.zeallat.prndtest.util;
 
+import android.support.annotation.StringRes;
+
+import com.blankj.utilcode.util.Utils;
+
 import java.util.Locale;
 
 /**
@@ -22,4 +26,7 @@ public class StringUtil {
         return String.format(Locale.KOREA, "%,d만원", price);
     }
 
+    public static String getString(@StringRes int stringResId) {
+        return Utils.getApp().getApplicationContext().getString(stringResId);
+    }
 }

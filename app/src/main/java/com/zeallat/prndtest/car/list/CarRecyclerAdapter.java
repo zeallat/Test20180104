@@ -1,7 +1,6 @@
 package com.zeallat.prndtest.car.list;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
-import com.bumptech.glide.request.transition.TransitionFactory;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseRecyclerViewAdapter;
 import com.zeallat.prndtest.base.BaseRecyclerViewHolder;
@@ -25,7 +19,6 @@ import java.util.Locale;
 
 import butterknife.BindView;
 
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 import static com.zeallat.prndtest.util.StringUtil.formatPrice;
 
@@ -92,7 +85,7 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
         holder.getTextViewStatus().setText(car.getStatusDisplay());
         holder.getTextViewYear().setText(String.valueOf(car.getYear()));
         holder.getTextViewMileage().setText(
-                String.format(Locale.KOREA, "%s만km",
+                String.format(Locale.KOREA, context.getString(R.string.all_msg_mileage_2),
                         new DecimalFormat("#.#").format(((float) car.getMileage() / 10000.f))));
         holder.getTextViewPrice().setText(formatPrice(car.getRealPrice()));
         holder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car
