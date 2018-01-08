@@ -161,11 +161,11 @@
         android:id="@+id/textViewCall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="16dp"
         android:text="@string/all_action_contact"
         android:textColor="@color/text.white"
         android:textSize="@dimen/all_textsize_large"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:background="@color/colorPrimary"/>
 </LinearLayout>

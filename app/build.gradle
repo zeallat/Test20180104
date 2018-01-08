@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-//Realm 사용위해 추가.
-apply plugin: 'realm-android'
 //kotlin plugin
 apply plugin: 'kotlin-android'
 

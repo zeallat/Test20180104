@@ -3,14 +3,10 @@ package com.zeallat.prndtest.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
-public class Model extends RealmObject implements Searchable {
+public class Model implements Searchable {
 
     @SerializedName("absolute_url")
     private String mAbsoluteUrl;
-    @PrimaryKey
     @SerializedName("id")
     private int mId;
     @SerializedName("name")

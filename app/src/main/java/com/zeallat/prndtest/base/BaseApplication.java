@@ -7,8 +7,6 @@ import android.support.multidex.MultiDex;
 import com.blankj.utilcode.util.Utils;
 import com.zeallat.prndtest.data.pref.PreferencesRepositoryImpl;
 
-import io.realm.Realm;
-
 /**
  * BaseApplication.java
  *
@@ -24,8 +22,6 @@ public class BaseApplication extends Application {
     }
 
     private void init() {
-        //Realm 초기화.
-        Realm.init(this);
         //utils init
         Utils.init(this);
         //pref init

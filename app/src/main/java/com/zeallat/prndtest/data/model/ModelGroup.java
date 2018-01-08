@@ -3,21 +3,19 @@ package com.zeallat.prndtest.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
+import java.util.List;
 
-public class ModelGroup extends RealmObject implements Searchable {
+
+public class ModelGroup implements Searchable {
 
     @SerializedName("absolute_url")
     private String mAbsoluteUrl;
-    @PrimaryKey
     @SerializedName("id")
     private int mId;
     @SerializedName("name")
     private String mName;
     @SerializedName("models")
-    private RealmList<Model> mModels;
+    private List<Model> mModels;
 
     public String getAbsoluteUrl() {
         return mAbsoluteUrl;
@@ -43,11 +41,11 @@ public class ModelGroup extends RealmObject implements Searchable {
         mName = name;
     }
 
-    public RealmList<Model> getModels() {
+    public List<Model> getModels() {
         return mModels;
     }
 
-    public void setModels(RealmList<Model> models) {
+    public void setModels(List<Model> models) {
         mModels = models;
     }
 }

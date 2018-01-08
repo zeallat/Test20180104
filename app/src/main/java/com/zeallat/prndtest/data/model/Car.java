@@ -8,18 +8,14 @@ import com.zeallat.prndtest.R;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
-import io.realm.annotations.PrimaryKey;
+import java.util.List;
 
 import static android.text.TextUtils.isEmpty;
 
 /*
 차량 데이터 클래스
  */
-public class Car extends RealmObject implements Serializable {
+public class Car implements Serializable {
 
     public enum Status {
         FOR_SALE("for_sale", R.color.all_status_forsale),
@@ -51,7 +47,6 @@ public class Car extends RealmObject implements Serializable {
         }
     }
 
-    @PrimaryKey
     @SerializedName("id")
     private int mId;
     @SerializedName("car_number")
@@ -61,7 +56,7 @@ public class Car extends RealmObject implements Serializable {
     @SerializedName("full_name")
     private String mFullName;
     @SerializedName("image_urls")
-    private RealmList<String> mImageUrls;
+    private List<String> mImageUrls;
     @SerializedName("initial_registration_date")
     private Date mInitialRegistrationDate;
     @SerializedName("absolute_url")
@@ -84,7 +79,6 @@ public class Car extends RealmObject implements Serializable {
     private String mStatusDisplay;
     @SerializedName("year")
     private int mYear;
-    @Ignore
     private Status mStatusEnum;
 
     public Car() {
@@ -122,11 +116,11 @@ public class Car extends RealmObject implements Serializable {
         mFullName = fullName;
     }
 
-    public RealmList<String> getImageUrls() {
+    public List<String> getImageUrls() {
         return mImageUrls;
     }
 
-    public void setImageUrls(RealmList<String> imageUrls) {
+    public void setImageUrls(List<String> imageUrls) {
         mImageUrls = imageUrls;
     }
 
