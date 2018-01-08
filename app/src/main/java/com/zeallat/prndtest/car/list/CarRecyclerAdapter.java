@@ -1,6 +1,7 @@
 package com.zeallat.prndtest.car.list;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,24 +10,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.bumptech.glide.request.transition.TransitionFactory;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BaseRecyclerViewAdapter;
 import com.zeallat.prndtest.base.BaseRecyclerViewHolder;
 import com.zeallat.prndtest.data.model.Car;
+import com.zeallat.prndtest.util.GlideApp;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
 
 import butterknife.BindView;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.with;
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 import static com.zeallat.prndtest.util.StringUtil.formatPrice;
 
 /**
  * Created by HoJunLee on 2018-01-06.
  */
 
-public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecyclerAdapter.ItemViewHolder> {
+public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecyclerAdapter
+        .ItemViewHolder> {
 
     /**
      * 뷰 타입
@@ -59,7 +67,8 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
                 layoutResId = R.layout.item_car_horizontal;
                 break;
             default:
-                throw new IllegalArgumentException(String.format(Locale.KOREA, "not supported view type: %d", viewType));
+                throw new IllegalArgumentException(String.format(Locale.KOREA, "not supported " +
+                        "view type: %d", viewType));
         }
 
         View view = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false);
@@ -73,12 +82,9 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
         Context context = holder.itemView.getContext();
 
         //이미지 표시
-        Glide.with(context)
-                .load(car.getMainImageUrl())
+        GlideApp.with(context).load(car.getMainImageUrl())
+                .transition(withCrossFade())
                 .thumbnail(0.1f)
-                .apply(new RequestOptions()
-                        .placeholder(R.drawable.layer_image_default_placeholder)
-                        .error(R.drawable.layer_image_error_placeholder))
                 .into(holder.getImageViewContent());
         //텍스트 표시
         holder.getTextViewModelName().setText(car.getModelPartName());
@@ -89,7 +95,8 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
                 String.format(Locale.KOREA, "%s만km",
                         new DecimalFormat("#.#").format(((float) car.getMileage() / 10000.f))));
         holder.getTextViewPrice().setText(formatPrice(car.getRealPrice()));
-        holder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car.getStatusEnum().getColorResId()));
+        holder.getTextViewStatus().setBackgroundColor(ContextCompat.getColor(context, car
+                .getStatusEnum().getColorResId()));
     }
 
     @Override
@@ -117,7 +124,7 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
             super(itemView);
         }
 
-        public ImageView  getImageViewContent() {
+        public ImageView getImageViewContent() {
             return mImageViewContent;
         }
 

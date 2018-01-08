@@ -5,10 +5,4 @@
             <solid android:color="@color/background.disabled"/>
         </shape>
     </item>
-    <item
-        android:bottom="24dp"
-        android:drawable="@drawable/ic_photo_white"
-        android:left="24dp"
-        android:right="24dp"
-        android:top="24dp"/>
 </layer-list>
