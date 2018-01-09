@@ -3,9 +3,8 @@ package com.zeallat.prndtest.data.model.specification;
 import com.zeallat.prndtest.data.source.BaseSpecification;
 
 /**
- * Created by HoJunLee on 2018-01-05.
+ * 차량 조회조건 - model id
  */
-
 public class CarSpecificationByModelId extends BaseSpecification {
     private int modelId;
 

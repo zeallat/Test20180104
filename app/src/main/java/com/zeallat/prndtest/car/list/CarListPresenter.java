@@ -12,6 +12,9 @@ import com.zeallat.prndtest.data.source.DefaultSpecification;
 
 import java.util.List;
 
+/**
+ * 차량 목록 프레젠터
+ */
 public class CarListPresenter implements CarListContract.Presenter {
 
     private CarListContract.View mView;
@@ -45,6 +48,10 @@ public class CarListPresenter implements CarListContract.Presenter {
 
     }
 
+    /**
+     * 차량 목록 조회
+     * @param isResetRequired 조회 완료시 목록 리셋 여부. {true}일시, 로드된 데이터가 기존의 데이터를 덮어쓴다.
+     */
     private void getCars(boolean isResetRequired) {
         BaseSpecification specification;
         int searchModelId = mView.getSearhModelId();

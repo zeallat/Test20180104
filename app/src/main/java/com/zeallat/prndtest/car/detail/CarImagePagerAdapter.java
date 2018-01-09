@@ -6,9 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.module.AppGlideModule;
-import com.bumptech.glide.request.RequestOptions;
 import com.zeallat.prndtest.R;
 import com.zeallat.prndtest.base.BasePagerAdapter;
 import com.zeallat.prndtest.util.GlideApp;
@@ -16,9 +13,8 @@ import com.zeallat.prndtest.util.GlideApp;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
- * Created by HoJunLee on 2018-01-07.
+ * 차량 상세 이미지 PagerAdapter
  */
-
 public class CarImagePagerAdapter extends BasePagerAdapter<String> {
     @Override
     protected View getView(@NonNull ViewGroup container, int position, String item) {

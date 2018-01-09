@@ -7,6 +7,9 @@ import com.zeallat.prndtest.data.model.Searchable;
 
 import java.util.List;
 
+/**
+ * 검색 Contract
+ */
 public interface SearchContract {
     interface View extends BaseView<Presenter> {
         void setSearchResult(List<Searchable> searchables);

@@ -5,9 +5,10 @@ import android.support.annotation.NonNull;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Created by HoJunLee on 2018-01-05.
+ * 베이스 레포지토리
+ * @param <T>
+ * @param <RS>
  */
-
 public abstract class BaseRepository<T, RS extends BaseDataSource<T>> implements BaseDataSource<T> {
 
     private final RS mRemoteDataSource;

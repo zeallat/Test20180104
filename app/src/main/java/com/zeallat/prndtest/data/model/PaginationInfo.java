@@ -5,7 +5,7 @@ package com.zeallat.prndtest.data.model;
  */
 
 /**
- * 페이징 정보
+ * 페이징 정보 데이터 모델
  */
 public class PaginationInfo {
 

@@ -7,6 +7,9 @@ import com.zeallat.prndtest.data.model.Car;
 
 import java.util.List;
 
+/**
+ * 차량 상세정보 Contract
+ */
 public interface CarDetailContract {
     interface View extends BaseView<Presenter> {
         void setCarImages(List<String> carImageUrls);

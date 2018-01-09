@@ -18,6 +18,9 @@ import java.util.Locale;
 import static com.zeallat.prndtest.util.DateUtil.formatDate;
 import static com.zeallat.prndtest.util.StringUtil.formatPrice;
 
+/**
+ * 차량 상세정보 프레젠터
+ */
 public class CarDetailPresenter implements CarDetailContract.Presenter {
 
     private CarDetailContract.View mView;

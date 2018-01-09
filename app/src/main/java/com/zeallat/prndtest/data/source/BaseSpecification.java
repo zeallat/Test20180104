@@ -1,9 +1,8 @@
 package com.zeallat.prndtest.data.source;
 
 /**
- * Created by HoJunLee on 2018-01-06.
+ * 베이스 조회조건
  */
-
 public class BaseSpecification implements Specification {
     private int page = 1;
 

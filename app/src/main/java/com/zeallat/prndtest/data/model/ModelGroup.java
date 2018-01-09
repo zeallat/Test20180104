@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
+/**
+ * 차량 모델 그룹 데이터 모델
+ */
 public class ModelGroup implements Searchable {
 
     @SerializedName("absolute_url")

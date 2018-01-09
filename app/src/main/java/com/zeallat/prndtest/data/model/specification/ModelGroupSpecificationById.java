@@ -4,9 +4,8 @@ package com.zeallat.prndtest.data.model.specification;
 import com.zeallat.prndtest.data.source.BaseSpecification;
 
 /**
- * Created by HoJunLee on 2018-01-05.
+ * 모델 그룹 조회조건 - id
  */
-
 public class ModelGroupSpecificationById extends BaseSpecification {
     private int id;
 

@@ -17,6 +17,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 검색 액티비티
+ */
 public class SearchActivity extends BaseViewActivity<SearchContract.Presenter> implements SearchContract.View {
 
     public static final String EXTRA_TYPE = "1cbec92e-8fad-4cbf-9320-ec965c5327a9";

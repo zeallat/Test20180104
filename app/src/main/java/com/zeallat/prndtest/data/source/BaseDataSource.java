@@ -8,9 +8,9 @@ import com.zeallat.prndtest.data.model.PaginationInfo;
 import java.util.List;
 
 /**
- * Created by HoJunLee on 2018-01-05.
+ * 베이스 데이터 소스
+ * @param <T>
  */
-
 public interface BaseDataSource<T> {
 
     interface GetDataCallback<T> {

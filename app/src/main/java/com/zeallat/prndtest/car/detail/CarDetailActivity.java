@@ -22,6 +22,9 @@ import me.relex.circleindicator.CircleIndicator;
 
 import static com.zeallat.prndtest.util.ViewUtil.isRecentlyClicked;
 
+/**
+ * 차량 상세 정보 액티비티
+ */
 public class CarDetailActivity extends BaseViewActivity<CarDetailContract.Presenter> implements CarDetailContract.View {
 
     public static final String EXTRA_CAR_ID = "556b8b3f-eb7d-420b-8364-fa7000f48437";

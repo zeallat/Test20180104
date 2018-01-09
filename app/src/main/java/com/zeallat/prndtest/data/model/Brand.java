@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * 브랜드 데이터 모델
+ */
 public class Brand implements Searchable {
 
     @SerializedName("absolute_url")

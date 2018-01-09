@@ -12,8 +12,8 @@ import java.util.List;
 
 import static android.text.TextUtils.isEmpty;
 
-/*
-차량 데이터 클래스
+/**
+ * 차량 데이터 모델
  */
 public class Car implements Serializable {
 

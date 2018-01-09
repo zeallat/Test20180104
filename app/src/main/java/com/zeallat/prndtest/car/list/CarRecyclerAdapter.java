@@ -23,9 +23,8 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 import static com.zeallat.prndtest.util.StringUtil.formatPrice;
 
 /**
- * Created by HoJunLee on 2018-01-06.
+ * 차량 목록 RecyclerAdapter
  */
-
 public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecyclerAdapter
         .ItemViewHolder> {
 
@@ -97,6 +96,9 @@ public class CarRecyclerAdapter extends BaseRecyclerViewAdapter<Car, CarRecycler
         return ViewType.valueOf(position).ordinal();
     }
 
+    /**
+     * 차량 목록 아이템 뷰 홀더
+     */
     class ItemViewHolder extends BaseRecyclerViewHolder {
         @BindView(R.id.imageViewContent)
         ImageView mImageViewContent;

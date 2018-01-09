@@ -15,6 +15,9 @@ import com.zeallat.prndtest.data.source.ModelGroupRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 검색 프레젠터
+ */
 public class SearchPresenter implements SearchContract.Presenter {
 
     private SearchContract.View mView;
@@ -73,6 +76,9 @@ public class SearchPresenter implements SearchContract.Presenter {
         }
     }
 
+    /**
+     * 브랜드 목록 조회
+     */
     private void getBrands() {
         mBrandRepository.query(new BaseDataSource.GetDataCallback<Brand>() {
             @Override
@@ -91,6 +97,9 @@ public class SearchPresenter implements SearchContract.Presenter {
         });
     }
 
+    /**
+     * 모델그룹 목록 조회
+     */
     private void getModelGroups() {
         int brandId = mView.getSearchId();
         if (brandId < 0) return;
@@ -113,6 +122,9 @@ public class SearchPresenter implements SearchContract.Presenter {
         });
     }
 
+    /**
+     * 모델 목록 조회
+     */
     private void getModels() {
         int modelGroupId = mView.getSearchId();
         if (modelGroupId < 0) return;

@@ -13,9 +13,8 @@ import com.zeallat.prndtest.data.model.Searchable;
 import butterknife.BindView;
 
 /**
- * Created by HoJunLee on 2018-01-07.
+ * 검색 RecyclerAdapter
  */
-
 public class SearchRecyclerAdapter extends BaseRecyclerViewAdapter<Searchable, SearchRecyclerAdapter.ItemViewHolder> {
 
     @Override

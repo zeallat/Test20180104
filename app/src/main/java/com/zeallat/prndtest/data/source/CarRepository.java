@@ -5,9 +5,8 @@ import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.source.remote.CarRemoteDataSource;
 
 /**
- * Created by HoJunLee on 2018-01-05.
+ * 차량 데이터 Repository
  */
-
 public class CarRepository extends BaseRepository<Car, CarRemoteDataSource> {
     public CarRepository() {
         super(new CarRemoteDataSource());

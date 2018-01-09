@@ -3,6 +3,9 @@ package com.zeallat.prndtest.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 차량 모델 데이터 모델
+ */
 public class Model implements Searchable {
 
     @SerializedName("absolute_url")
