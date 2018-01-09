@@ -3,6 +3,7 @@ package com.zeallat.prndtest.base;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.blankj.utilcode.util.Utils;
 import com.zeallat.prndtest.data.pref.PreferencesRepositoryImpl;
@@ -26,6 +27,8 @@ public class BaseApplication extends Application {
         Utils.init(this);
         //pref init
         PreferencesRepositoryImpl.init(this);
+        //Support for vector drawable
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
     @Override
