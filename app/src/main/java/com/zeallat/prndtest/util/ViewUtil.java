@@ -3,12 +3,12 @@ package com.zeallat.prndtest.util;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.SystemClock;
+import android.util.Log;
+import android.util.SparseLongArray;
 import android.view.View;
 
 import com.zeallat.prndtest.R;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -53,7 +53,8 @@ public class ViewUtil {
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
     }
 
-    private static Map<String, Long> mLastClickedTimeMap = new HashMap<>();
+    private static SparseLongArray mLastClickedTimes = new SparseLongArray();
+    private static final AtomicInteger sNextGeneratedTagId = new AtomicInteger(1);
     private static final int CLICK_DELAY_MIN = 600;
 
     /**
@@ -63,21 +64,23 @@ public class ViewUtil {
      * @return
      */
     public static boolean isRecentlyClicked(View view) {
-        String viewIdTag = (String) firstNonNull(view.getTag(R.id.key_tag_uuid), "");
+        int viewTagId = getTagId(view);
+        long lastClickedTime = mLastClickedTimes.get(viewTagId, -1L);
         long currentTime = SystemClock.elapsedRealtime();
-        if (isEmpty(viewIdTag)) {
-            viewIdTag = UUID.randomUUID().toString();
-            view.setTag(R.id.key_tag_uuid, viewIdTag);
-            mLastClickedTimeMap.put(viewIdTag, currentTime);
+        if (lastClickedTime == -1L || lastClickedTime + CLICK_DELAY_MIN < currentTime) {
+            //Not clicked before or Click is allowed
+            mLastClickedTimes.put(viewTagId, currentTime);
             return false;
-        } else {
-            long lastClickedTime = mLastClickedTimeMap.get(viewIdTag);
-            if (lastClickedTime + CLICK_DELAY_MIN < currentTime) {//Click is allowed
-                mLastClickedTimeMap.put(viewIdTag, currentTime);
-                return false;
-            } else {//Click is not allowed
-                return true;
-            }
         }
+        return true;//Click is not allowed
+    }
+
+    public static int getTagId(View view) {
+        int viewTagId = (int) firstNonNull(view.getTag(R.id.key_tag_id), -1);
+        if (viewTagId == -1) {
+            viewTagId = sNextGeneratedTagId.getAndIncrement();//tagId not set before
+            view.setTag(R.id.key_tag_id, viewTagId);
+        }
+        return viewTagId;
     }
 }
