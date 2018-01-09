@@ -75,7 +75,10 @@ public class CarListPresenter implements CarListContract.Presenter {
             @Override
             public void onDataNotAvailable() {
                 if (mView.isDestroyed()) return;
-                if (isResetRequired) mView.setNoItemViewVisible(true);
+                if (isResetRequired) {
+                    mView.finishRefresh();
+                    mView.setNoItemViewVisible(true);
+                }
             }
         });
     }
