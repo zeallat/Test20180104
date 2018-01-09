@@ -2,6 +2,7 @@ package com.zeallat.prndtest.data.source.remote;
 
 import android.support.annotation.NonNull;
 
+import com.annimon.stream.Stream;
 import com.zeallat.prndtest.data.model.Car;
 import com.zeallat.prndtest.data.model.PaginationInfo;
 import com.zeallat.prndtest.data.model.specification.CarSpecificationById;
@@ -117,9 +118,6 @@ public class CarRemoteDataSource implements BaseDataSource<Car> {
     }
 
     private List<Car> createCarId(List<Car> cars) {
-        for (Iterator<Car> carIterator = cars.iterator(); carIterator.hasNext(); ) {
-            carIterator.next().parseIdFromUrl();
-        }
-        return cars;
+        return Stream.of(cars).map(Car::parseIdFromUrl).toList();
     }
 }

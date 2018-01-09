@@ -221,10 +221,11 @@ public class Car implements Serializable {
         mStatusEnum = statusEnum;
     }
 
-    public void parseIdFromUrl() {
-        if (!isEmpty(this.getAbsoluteUrl())) {
-            this.setId(Integer.parseInt(Uri.parse(this.getAbsoluteUrl()).getLastPathSegment()));
+    public static Car parseIdFromUrl(Car car) {
+        if (car != null && !isEmpty(car.getAbsoluteUrl())) {
+            car.setId(Integer.parseInt(Uri.parse(car.getAbsoluteUrl()).getLastPathSegment()));
         }
+        return car;
     }
 
     public int getRealPrice() {

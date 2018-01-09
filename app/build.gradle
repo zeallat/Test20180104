@@ -72,4 +72,5 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:commons:0.9.5.0'
     implementation 'com.google.android:flexbox:0.3.2'
     implementation 'me.relex:circleindicator:1.2.2@aar'
+    implementation 'com.annimon:stream:1.1.9'
 }
