@@ -52,7 +52,7 @@ public class CarListActivity extends BaseViewActivity<CarListContract.Presenter>
             mSearchModelId = extras.getInt(EXTRA_MODEL_ID, -1);
             mSearchModelName = extras.getString(EXTRA_MODEL_NAME, "");
         }
-        new CarPresenter(this);
+        new CarListPresenter(this);
         setContentView(R.layout.activity_car_list);
         initView();
         super.onCreate(savedInstanceState);

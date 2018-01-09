@@ -12,13 +12,13 @@ import com.zeallat.prndtest.data.source.DefaultSpecification;
 
 import java.util.List;
 
-public class CarPresenter implements CarListContract.Presenter {
+public class CarListPresenter implements CarListContract.Presenter {
 
     private CarListContract.View mView;
     private CarRepository mCarRepository = new CarRepository();
     private int mCurrentPage = 1;
 
-    public CarPresenter(CarListContract.View view) {
+    public CarListPresenter(CarListContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
