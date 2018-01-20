@@ -15,9 +15,12 @@ import com.zeallat.prndtest.data.source.DefaultSpecification;
 import com.zeallat.prndtest.data.source.Specification;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -28,6 +31,7 @@ import retrofit2.Response;
 public class CarRemoteDataSource implements BaseDataSource<Car> {
 
     private CarService mCarService = Api.getInstance().getCarService();
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     @Override
     public void add(@NonNull Car data, @NonNull ResponseCallback callback) {
@@ -86,7 +90,17 @@ public class CarRemoteDataSource implements BaseDataSource<Car> {
              */
             if (specification instanceof DefaultSpecification) {
                 DefaultSpecification defaultSpecification = (DefaultSpecification) specification;
-                mCarService.getList(defaultSpecification.getPage()).enqueue(apiCallback);
+                mCarService.getList(defaultSpecification.getPage())
+                        .concatMapIterable(cars -> cars)
+                        .map(Car::parseIdFromUrl)
+                        .subscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<Car>() {
+                            @Override
+                            public void accept(Car car) throws Exception {
+
+                            }
+                        });
             } else {
                 CarSpecificationByModelId carSpecificationByModelId = (CarSpecificationByModelId) specification;
                 mCarService.getList(carSpecificationByModelId.getModelId(), carSpecificationByModelId.getPage()).enqueue(apiCallback);

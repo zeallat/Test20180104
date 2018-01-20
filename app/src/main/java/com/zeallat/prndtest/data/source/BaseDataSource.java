@@ -9,12 +9,15 @@ import java.util.List;
 
 /**
  * 베이스 데이터 소스
+ *
  * @param <T>
  */
 public interface BaseDataSource<T> {
 
     interface GetDataCallback<T> {
         void onDataLoaded(List<T> datas, @Nullable PaginationInfo paginationInfo);
+
+        void onDataLoaded(T data, @Nullable PaginationInfo paginationInfo);
 
         void onDataNotAvailable();
     }

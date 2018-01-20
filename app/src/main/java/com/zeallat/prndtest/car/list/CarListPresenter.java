@@ -10,6 +10,7 @@ import com.zeallat.prndtest.data.source.BaseSpecification;
 import com.zeallat.prndtest.data.source.CarRepository;
 import com.zeallat.prndtest.data.source.DefaultSpecification;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,6 +51,7 @@ public class CarListPresenter implements CarListContract.Presenter {
 
     /**
      * 차량 목록 조회
+     *
      * @param isResetRequired 조회 완료시 목록 리셋 여부. {true}일시, 로드된 데이터가 기존의 데이터를 덮어쓴다.
      */
     private void getCars(boolean isResetRequired) {
@@ -78,6 +80,18 @@ public class CarListPresenter implements CarListContract.Presenter {
                 if (isResetRequired) {
                     mView.finishRefresh();
                     mView.setNoItemViewVisible(true);
+                }
+            }
+
+            @Override
+            public void onDataLoaded(Car data, @Nullable PaginationInfo paginationInfo) {
+                if (mView.isDestroyed()) return;
+                if (isResetRequired) {
+                    mView.setNoItemViewVisible(datas.isEmpty());
+                    mView.setCars(new ArrayList<>());
+                    mView.finishRefresh();
+                } else {
+                    mView.addCars(datas);
                 }
             }
         });
