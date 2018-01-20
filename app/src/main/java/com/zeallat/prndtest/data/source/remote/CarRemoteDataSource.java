@@ -19,7 +19,6 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -95,12 +94,7 @@ public class CarRemoteDataSource implements BaseDataSource<Car> {
                         .map(Car::parseIdFromUrl)
                         .subscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Consumer<Car>() {
-                            @Override
-                            public void accept(Car car) throws Exception {
-
-                            }
-                        });
+                        .subscribe(car -> callback.onDataLoaded(car, null));
             } else {
                 CarSpecificationByModelId carSpecificationByModelId = (CarSpecificationByModelId) specification;
                 mCarService.getList(carSpecificationByModelId.getModelId(), carSpecificationByModelId.getPage()).enqueue(apiCallback);
